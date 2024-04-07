@@ -1,0 +1,99 @@
+@startuml
+
+/' CLASSES E ENUNS '/
+
+class Prova{
+    - areaProva: AreaProva
+    - diaProva: Dia
+    - ano: int
+    - cor: String
+    - provaExcluida: boolean
+    - questoes: List<Questao>
+}
+
+class Usuario{
+    - nome: String
+    - email: String
+    - tipoUsuario: TipoUsuario
+    - permissoes: List<Permissao>
+}
+
+class Questao{
+    - tipoQuestoes: TipoQuestoes
+    - prova: Prova
+    - numeroQuestão: int
+}
+
+class Metricas{
+    - tempoTotalDeProva: int
+    - tempoMedioDasQuestoes: int
+    - notaCalculada: float
+    - quantidadeDeAcertos: int
+}
+
+class AplicacaoProva{
+    - statusAplicacaoProva: StatusAplicacaoProva
+    - tempoInicio: Timestamp
+    - tempoFim: Timestamp
+    - metricas: Metricas
+}
+
+class Permissao{
+    - acao: String
+    - tipoPermissao: TipoUsuario
+}
+
+Enum AreaProva{
+    + EXATAS
+    + NATUREZAS
+    + HUMANAS
+    + LINGUAGENS
+}
+Enum NivelQuestao{
+    + DIFICIL
+    + MEDIO
+    + FACIL
+}
+Enum TipoUsuario{
+    + ALUNO
+    + ADMINISTRADOR
+    + ANALISTA
+}
+Enum DiaDeProva{
+    + PRIMEIRO
+    + SEGUNDO
+}
+Enum StatusAplicacaoProva{
+    + FINALIZADA
+    + ANDAMENTO
+}
+
+/' RELAÇÕES '/
+
+Prova "1..*" -- "0..*" AplicacaoProva
+Prova  *--  Questao
+Prova "0..*"--"1" DiaDeProva
+Prova "0..*"-- "1" AreaProva
+
+Usuario "1" -- "0..*" AplicacaoProva
+Usuario "0..*" -- "1..*" Permissao
+Usuario "0..*" - "1" TipoUsuario
+
+Metricas --o AplicacaoProva
+
+Questao "0..*" --"1" NivelQuestao
+
+AplicacaoProva "0..*" -- "1" StatusAplicacaoProva
+
+Permissao "0..*" - "1" TipoUsuario
+
+/' NOTAS'/
+
+note bottom of Permissao: Permissoes para as ações do usuário
+note top of Usuario: Informações do usuário
+note top of Questao: Entidade que constitui uma prova
+note top of Prova : Informações da prova
+note top of AplicacaoProva : Informações de uma aplicação de prova
+note top of Metricas : Métricas calculadas da aplicação de uma
+
+@enduml
