@@ -1,6 +1,6 @@
 @startuml
 
-/' CLASSES E ENUNS '/
+/' CLASSES E ENUMS '/
 
 class Prova{
     - areaProva: AreaProva
@@ -89,11 +89,11 @@ Permissao "0..*" - "1" TipoUsuario
 
 /' NOTAS'/
 
-note bottom of Permissao: Permissoes para as ações do usuário
+note bottom of Permissao: Permissões para as ações do usuário
 note top of Usuario: Informações do usuário
 note top of Questao: Entidade que constitui uma prova
 note top of Prova : Informações da prova
 note top of AplicacaoProva : Informações de uma aplicação de prova
-note top of Metricas : Métricas calculadas da aplicação de uma
+note top of Metricas : Métricas calculadas da aplicação de prova
 
 @enduml
