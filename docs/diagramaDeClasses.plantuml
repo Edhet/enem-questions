@@ -22,6 +22,8 @@ class Questao{
     - tipoQuestoes: TipoQuestoes
     - prova: Prova
     - numeroQuestão: int
+    - Opcoes: List<Opcoes>
+    - OpcaoCorreta: Opcao
 }
 
 class Metricas{
@@ -29,6 +31,7 @@ class Metricas{
     - tempoMedioDasQuestoes: int
     - notaCalculada: float
     - quantidadeDeAcertos: int
+    - quantidadeTotalDeQuestoes: int
 }
 
 class AplicacaoProva{
@@ -36,6 +39,7 @@ class AplicacaoProva{
     - tempoInicio: Timestamp
     - tempoFim: Timestamp
     - metricas: Metricas
+    - respostas: List<Opcao>
 }
 
 class Permissao{
@@ -43,6 +47,11 @@ class Permissao{
     - tipoPermissao: TipoUsuario
 }
 
+class Opcao{
+    - texto: String
+    - label: String
+    - questao: Questao
+}
 Enum AreaProva{
     + EXATAS
     + NATUREZAS
@@ -72,6 +81,7 @@ Enum StatusAplicacaoProva{
 
 Prova "1..*" -- "0..*" AplicacaoProva
 Prova  *--  Questao
+Questao *--  Opcao
 Prova "0..*"--"1" DiaDeProva
 Prova "0..*"-- "1" AreaProva
 
@@ -87,6 +97,9 @@ AplicacaoProva "0..*" -- "1" StatusAplicacaoProva
 
 Permissao "0..*" - "1" TipoUsuario
 
+AplicacaoProva "0..*" -- "0..*" Opcao
+
+
 /' NOTAS'/
 
 note bottom of Permissao: Permissões para as ações do usuário
@@ -95,5 +108,6 @@ note top of Questao: Entidade que constitui uma prova
 note top of Prova : Informações da prova
 note top of AplicacaoProva : Informações de uma aplicação de prova
 note top of Metricas : Métricas calculadas da aplicação de prova
+note bottom of Opcao : Texto e opções da questão
 
 @enduml
