@@ -4,7 +4,7 @@
 
 class Prova{
     - areaProva: AreaProva
-    - diaProva: Dia
+    - diaProva: DiaDeProva
     - ano: int
     - cor: String
     - provaExcluida: boolean
@@ -14,6 +14,7 @@ class Prova{
 class Usuario{
     - nome: String
     - email: String
+    - senha: String
     - tipoUsuario: TipoUsuario
     - permissoes: List<Permissao>
 }
@@ -95,7 +96,7 @@ Questao "0..*" --"1" NivelQuestao
 
 AplicacaoProva "0..*" -- "1" StatusAplicacaoProva
 
-Permissao "0..*" - "1" TipoUsuario
+Permissao "0..*   " -- "1" TipoUsuario
 
 AplicacaoProva "0..*" -- "0..*" Opcao
 
