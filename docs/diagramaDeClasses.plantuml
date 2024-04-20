@@ -1,6 +1,6 @@
 @startuml
 
-/' CLASSES E ENUMS '/
+/' CLASSES '/
 
 class Prova{
     - areaProva: AreaProva
@@ -59,59 +59,25 @@ class Resposta{
     - opcaoEscolhida : Opcao
     - questao : Questao
 }
-/'
-Enum AreaProva{
-    + EXATAS
-    + NATUREZAS
-    + HUMANAS
-    + LINGUAGENS
-}
-Enum NivelQuestao{
-    + DIFICIL
-    + MEDIO
-    + FACIL
-}
-Enum TipoUsuario{
-    + ALUNO
-    + ADMINISTRADOR
-    + ANALISTA
-}
-Enum DiaDeProva{
-    + PRIMEIRO
-    + SEGUNDO
-}
-Enum StatusAplicacaoProva{
-    + FINALIZADA
-    + ANDAMENTO
-} '/
+
 
 /' RELAÇÕES '/
 
 Prova "1..*" -- "0..*" AplicacaoProva
 Prova  *--  Questao
 Questao *--  Opcao
-'Prova "0..*"--"1" DiaDeProva,
-/'Prova "0..*"-- "1" AreaProva '/
+
 
 Usuario "1" -- "0..*" AplicacaoProva
 Usuario "0..*" -- "1..*" Permissao
-'Usuario "0..*" - "1" TipoUsuario'
 
 Metricas --o AplicacaoProva
-
-/'Questao "0..*" --"1" NivelQuestao'/
-
-'AplicacaoProva "0..*" -- "1" StatusAplicacaoProva'
-
-/'Permissao "0..*   " -- "1" TipoUsuario '/
 
 AplicacaoProva "1" -- "0..*" Resposta
 
 Opcao "1" -- "0..*" Resposta
 
 Questao "1" -- "0..*" Resposta
-
-
 
 /' NOTAS'/
 
@@ -122,5 +88,6 @@ note top of Prova : Informações da prova
 note top of AplicacaoProva : Informações de uma aplicação de prova
 note top of Metricas : Métricas calculadas da aplicação de prova
 note bottom of Opcao : Texto e opções da questão
-note left of Resposta : Respsota da prova
+note left of Resposta : Resposta da Aplicação de prova
+
 @enduml
