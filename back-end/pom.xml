@@ -12,7 +12,7 @@
 	<artifactId>Enem-questions</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Enem-questions</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Projeto da disciplina de Projeto Integrador 2</description>
 	<properties>
 		<java.version>22</java.version>
 	</properties>

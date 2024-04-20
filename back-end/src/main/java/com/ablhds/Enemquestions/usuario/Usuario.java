@@ -1,5 +1,6 @@
 package com.ablhds.Enemquestions.usuario;
 
+import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProva;
 import com.ablhds.Enemquestions.permissao.Permissao;
 import com.ablhds.Enemquestions.permissao.TipoAcesso;
 import jakarta.persistence.*;
@@ -33,4 +34,7 @@ public class Usuario {
     @NonNull
     @OneToMany(fetch = FetchType.LAZY)
     private List<Permissao> permissoes;
+
+    @OneToMany
+    private List<AplicacaoProva> aplicacoesProva;
 }
