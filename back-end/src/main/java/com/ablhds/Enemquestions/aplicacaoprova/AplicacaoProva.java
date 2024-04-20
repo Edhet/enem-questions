@@ -2,6 +2,7 @@ package com.ablhds.Enemquestions.aplicacaoprova;
 
 import com.ablhds.Enemquestions.metricas.Metricas;
 import com.ablhds.Enemquestions.resposta.Resposta;
+import com.ablhds.Enemquestions.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,4 +33,8 @@ public class AplicacaoProva {
     @NonNull
     @OneToOne(fetch = FetchType.EAGER)
     private Metricas metricas;
+
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Usuario aplicante;
 }
