@@ -8,8 +8,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -24,9 +23,9 @@ public class AplicacaoProva {
     private EstadoAplicacaoProva estadoAplicacaoProva;
 
     @NonNull
-    private Date tempoInicioDeAplicacao;
+    private LocalDateTime tempoInicioDeAplicacao;
 
-    private Date tempoFimDeAplicacao;
+    private LocalDateTime tempoFimDeAplicacao;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Resposta> respostas;
