@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public final class AplicacaoProvaMapper {
 
     public static AplicacaoProvaDto entityToDto(AplicacaoProva aplicacaoProva) {

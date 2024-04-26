@@ -2,7 +2,6 @@ package com.ablhds.Enemquestions.permissao;
 
 public final class PermissaoMapper {
 
-
     public static PermissaoDto entityToDto(Permissao permissao) {
         return new PermissaoDto(
                 permissao.getId(),

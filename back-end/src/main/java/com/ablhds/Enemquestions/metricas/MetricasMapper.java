@@ -2,7 +2,6 @@ package com.ablhds.Enemquestions.metricas;
 
 import org.springframework.stereotype.Service;
 
-@Service
 public class MetricasMapper {
 
     public static MetricasDto entityToDto(Metricas metricas) {
