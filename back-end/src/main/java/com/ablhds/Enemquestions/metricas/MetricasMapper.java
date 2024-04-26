@@ -3,10 +3,10 @@ package com.ablhds.Enemquestions.metricas;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MetricasDtoMapper {
+public class MetricasMapper {
 
-    public static MetricasDto metricasToMetricasDto(Metricas metricas) {
-        return  new MetricasDto(
+    public static MetricasDto entityToDto(Metricas metricas) {
+        return new MetricasDto(
                 metricas.getId(),
                 metricas.getSegundosTotaisDeProva(),
                 metricas.getSegundosMediosPorQuestao(),
@@ -14,7 +14,8 @@ public class MetricasDtoMapper {
                 metricas.getNota()
         );
     }
-    public static Metricas metricasDtoToMetricas(MetricasDto metricasDto) {
+
+    public static Metricas dtoToEntity(MetricasDto metricasDto) {
         return null;
     }
 }

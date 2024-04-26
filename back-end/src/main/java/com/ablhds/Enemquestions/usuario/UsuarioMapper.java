@@ -1,26 +1,24 @@
 package com.ablhds.Enemquestions.usuario;
 
 import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProvaDto;
-import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProvaDtoMapper;
+import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProvaMapper;
 import com.ablhds.Enemquestions.permissao.PermissaoDto;
-import org.springframework.stereotype.Service;
+import com.ablhds.Enemquestions.permissao.PermissaoMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import com.ablhds.Enemquestions.permissao.PermissaoDtoMapper;
 
-@Service
-public  final class UsuarioDTOMapper{
+public final class UsuarioMapper {
 
-    public static UsuarioDto usuarioToDto(Usuario usuario) {
+    public static UsuarioDto entityToDto(Usuario usuario) {
         List<AplicacaoProvaDto> aplicacaoProvaDtos = usuario.getAplicacoesProva()
                 .stream()
-                .map(AplicacaoProvaDtoMapper::aplicacaoProvaToAplicacaoProvaDto)
+                .map(AplicacaoProvaMapper::entityToDto)
                 .collect(Collectors.toList());
 
         List<PermissaoDto> permissaoDtos = usuario.getPermissoes()
                 .stream()
-                .map(PermissaoDtoMapper::permissaoToDto)
+                .map(PermissaoMapper::entityToDto)
                 .collect(Collectors.toList());
 
         return new UsuarioDto(
@@ -32,7 +30,7 @@ public  final class UsuarioDTOMapper{
                 aplicacaoProvaDtos);
     }
 
-    public static Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto) {
+    public static Usuario dtoToEntity(UsuarioDto usuarioDto) {
         return null;
     }
 }

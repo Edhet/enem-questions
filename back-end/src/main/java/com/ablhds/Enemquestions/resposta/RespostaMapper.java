@@ -1,19 +1,17 @@
 package com.ablhds.Enemquestions.resposta;
 
-import org.springframework.stereotype.Service;
+public final class RespostaMapper {
 
-@Service
-public final class RespostaDtoMapper  {
-
-    public static RespostaDto respostaToRespostaDto(Resposta resposta) {
+    public static RespostaDto entityToDto(Resposta resposta) {
         return new RespostaDto(
                 resposta.getId(),
                 resposta.getQuestao().getId(),
                 resposta.getOpcaoEscolhida().getId(),
                 resposta.getAplicacaoProva().getId()
-        ) ;
+        );
     }
-    public static Resposta respostaDtoToResposta (RespostaDto respostaDto) {
+
+    public static Resposta dtoToEntity(RespostaDto respostaDto) {
         return null;
     }
 

@@ -1,19 +1,17 @@
 package com.ablhds.Enemquestions.questao;
 
 import com.ablhds.Enemquestions.opcao.OpcaoDto;
-import com.ablhds.Enemquestions.opcao.OpcaoDtoMapper;
-import org.springframework.stereotype.Service;
+import com.ablhds.Enemquestions.opcao.OpcaoMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-public final class QuestaoDtoMapper {
+public final class QuestaoMapper {
 
-    public static QuestaoDto questaoToQuestaoDto(Questao questao) {
+    public static QuestaoDto entityToDto(Questao questao) {
         List<OpcaoDto> opcaoDtos = questao.getOpcoes()
                 .stream()
-                .map(OpcaoDtoMapper::opcaoToOpcaoDto)
+                .map(OpcaoMapper::entityToDto)
                 .collect(Collectors.toList());
 
         return new QuestaoDto(
@@ -22,7 +20,8 @@ public final class QuestaoDtoMapper {
                 opcaoDtos // passar essa lista de opcoes para opcoes dto
         );
     }
-    public static Questao questaoDtoToQuestao(QuestaoDto questaoDto) {
+
+    public static Questao dtoToEntity(QuestaoDto questaoDto) {
         return null;
     }
 }

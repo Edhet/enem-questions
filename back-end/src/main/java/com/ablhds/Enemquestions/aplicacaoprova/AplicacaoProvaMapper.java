@@ -1,24 +1,21 @@
 package com.ablhds.Enemquestions.aplicacaoprova;
 
-import com.ablhds.Enemquestions.metricas.MetricasDto;
-import com.ablhds.Enemquestions.metricas.MetricasDtoMapper;
-import com.ablhds.Enemquestions.resposta.Resposta;
+import com.ablhds.Enemquestions.metricas.MetricasMapper;
 import com.ablhds.Enemquestions.resposta.RespostaDto;
-import com.ablhds.Enemquestions.resposta.RespostaDtoMapper;
+import com.ablhds.Enemquestions.resposta.RespostaMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public final class AplicacaoProvaDtoMapper{
+public final class AplicacaoProvaMapper {
 
-    public static AplicacaoProvaDto aplicacaoProvaToAplicacaoProvaDto(AplicacaoProva aplicacaoProva){
+    public static AplicacaoProvaDto entityToDto(AplicacaoProva aplicacaoProva) {
 
         List<RespostaDto> respostaDtos = aplicacaoProva.getRespostas()
                 .stream()
-                .map(RespostaDtoMapper::respostaToRespostaDto)
+                .map(RespostaMapper::entityToDto)
                 .collect(Collectors.toList());
 
         return new AplicacaoProvaDto(
@@ -27,12 +24,13 @@ public final class AplicacaoProvaDtoMapper{
                 aplicacaoProva.getTempoInicioDeAplicacao().toString(),
                 aplicacaoProva.getTempoFimDeAplicacao().toString(),
                 respostaDtos,
-                MetricasDtoMapper.metricasToMetricasDto(aplicacaoProva.getMetricas()),
+                MetricasMapper.entityToDto(aplicacaoProva.getMetricas()),
                 aplicacaoProva.getProva().getId()
 
         );
     }
-    public static AplicacaoProva aplicacaoProvaDtoToAplicacaoProva(AplicacaoProvaDto aplicacaoProvaDto){
+
+    public static AplicacaoProva dtoToEntity(AplicacaoProvaDto aplicacaoProvaDto) {
         return null;
     }
 
