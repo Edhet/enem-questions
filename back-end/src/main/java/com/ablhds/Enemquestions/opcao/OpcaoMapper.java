@@ -1,8 +1,6 @@
 package com.ablhds.Enemquestions.opcao;
 
-import org.springframework.stereotype.Service;
-
-public class OpcaoMapper {
+public final class OpcaoMapper {
 
     public static OpcaoDto entityToDto(Opcao opcao) {
         return new OpcaoDto(
