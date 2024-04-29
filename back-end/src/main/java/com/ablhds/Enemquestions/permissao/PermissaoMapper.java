@@ -10,7 +10,16 @@ public final class PermissaoMapper {
         );
     }
 
-    public static Permissao dtoToEntity(PermissaoDto dto) {
-        return null;
+    public static Permissao dtoToEntity(PermissaoDto permissaoDto) {
+
+        TipoAcesso tipoPermissao = TipoAcesso.valueOf(permissaoDto.tipoPermissao());
+
+        Permissao permissao = new Permissao();
+
+        permissao.setTipoPermissao(tipoPermissao);
+        permissao.setId(permissaoDto.id());
+        permissao.setTipoPermissao(tipoPermissao);
+
+        return permissao;
     }
 }

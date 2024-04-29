@@ -1,9 +1,12 @@
 package com.ablhds.Enemquestions.usuario;
 
+import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProva;
 import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProvaDto;
 import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProvaMapper;
+import com.ablhds.Enemquestions.permissao.Permissao;
 import com.ablhds.Enemquestions.permissao.PermissaoDto;
 import com.ablhds.Enemquestions.permissao.PermissaoMapper;
+import com.ablhds.Enemquestions.permissao.TipoAcesso;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +34,27 @@ public final class UsuarioMapper {
     }
 
     public static Usuario dtoToEntity(UsuarioDto usuarioDto) {
-        return null;
+
+        TipoAcesso tipoAcesso = TipoAcesso.valueOf(usuarioDto.tipoUsuario());
+
+        List<Permissao> permissoes = usuarioDto.permissoes()
+                .stream()
+                .map(PermissaoMapper::dtoToEntity)
+                .collect(Collectors.toList());
+
+        List<AplicacaoProva> aplicacoesProva = usuarioDto.aplicacoesProva()
+                .stream()
+                .map(AplicacaoProvaMapper::dtoToEntity).collect(Collectors.toList());
+
+
+        Usuario usuario = new Usuario();
+
+        usuario.setId((usuarioDto.id()));
+        usuario.setNome(usuarioDto.nome());
+        usuario.setEmail(usuarioDto.email());
+        usuario.setTipoUsuario(tipoAcesso);
+        usuario.setPermissoes(permissoes);
+        usuario.setAplicacoesProva(aplicacoesProva);
+        return usuario;
     }
 }
