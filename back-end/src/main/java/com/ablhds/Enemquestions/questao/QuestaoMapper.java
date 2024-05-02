@@ -1,5 +1,6 @@
 package com.ablhds.Enemquestions.questao;
 
+import com.ablhds.Enemquestions.opcao.Opcao;
 import com.ablhds.Enemquestions.opcao.OpcaoDto;
 import com.ablhds.Enemquestions.opcao.OpcaoMapper;
 
@@ -22,6 +23,17 @@ public final class QuestaoMapper {
     }
 
     public static Questao dtoToEntity(QuestaoDto questaoDto) {
-        return null;
+
+        List<Opcao> opcoes = questaoDto.opcoes()
+                .stream()
+                .map(OpcaoMapper::dtoToEntity)
+                .collect(Collectors.toList());
+
+        Questao questao = new Questao();
+        questao.setId(questaoDto.id());
+        questao.setNumeroQuestao(questaoDto.numeroQuestao());
+        questao.setOpcoes(opcoes);
+
+        return questao;
     }
 }

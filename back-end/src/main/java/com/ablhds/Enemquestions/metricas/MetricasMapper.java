@@ -13,6 +13,13 @@ public final class MetricasMapper {
     }
 
     public static Metricas dtoToEntity(MetricasDto metricasDto) {
-        return null;
+        Metricas metricas = new Metricas();
+
+        metricas.setId(metricasDto.id());
+        metricas.setSegundosTotaisDeProva(metricasDto.segundosTotaisDeProva());
+        metricas.setSegundosMediosPorQuestao(metricasDto.segundosMediosPorQuestao());
+        metricas.setQuantidadeDeAcertos(metricasDto.quantidadeDeAcertos());
+        metricas.setNota(metricasDto.nota());
+        return metricas;
     }
 }

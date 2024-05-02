@@ -11,6 +11,11 @@ public final class OpcaoMapper {
     }
 
     public static Opcao dtoToEntity(OpcaoDto opcaoDto) {
-        return null;
+        Opcao opcao = new Opcao();
+        opcao.setId(opcaoDto.id());
+        opcao.setLabel(opcaoDto.label());
+        opcao.setTexto(opcaoDto.texto());
+
+        return opcao;
     }
 }
