@@ -5,7 +5,7 @@ services:
     image: 'postgres:latest'
     container_name: postgres_container
     ports:
-      - 5432:5432
+      - 8083:5432
     environment:
       - POSTGRES_DB=enem-questions
       - POSTGRES_USER=${POSTGRES_USERNAME}
@@ -32,6 +32,16 @@ services:
       postgres:
         condition: service_healthy
     restart: always
+
+  frontend:
+    build:
+      dockerfile: ./front-end/Dockerfile
+    container_name: frontend_container
+    ports:
+      - 8081:8080
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   enem-questions-volume:
