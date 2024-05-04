@@ -3,6 +3,7 @@ package com.ablhds.Enemquestions.questao;
 import com.ablhds.Enemquestions.opcao.Opcao;
 import com.ablhds.Enemquestions.prova.Prova;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -12,26 +13,29 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Questao {
     @Id
     @GeneratedValue
     private Long id;
 
-    @NonNull
+    @Column(nullable = false)
     private DificuldadeQuestao dificuldadeQuestao;
 
     @NonNull
+    @Column(nullable = false)
     private Integer numeroQuestao;
 
-    @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @Column(nullable = false)
     private Prova prova;
 
     @NonNull
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+    @Column(nullable = false)
     private List<Opcao> opcoes;
 
-    @NonNull
     @OneToOne(fetch = FetchType.LAZY)
+    @Column(nullable = false)
     private Opcao opcaoCorreta;
 }

@@ -1,9 +1,10 @@
 package com.ablhds.Enemquestions.resposta;
 
+import com.ablhds.Enemquestions.opcao.OpcaoDto;
+
 public record RespostaDto(
         long id,
         long idQuestao,
-        long idOpcaoEscolhida,
-        long idAplicacaoProva
+        OpcaoDto opcaoEscolhida
 ) {
 }

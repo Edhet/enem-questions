@@ -6,7 +6,7 @@ import java.util.List;
 
 public record QuestaoDto(
         long id,
-        long numeroQuestao,
+        int numeroQuestao,
         List<OpcaoDto> opcoes
 ) {
 }
