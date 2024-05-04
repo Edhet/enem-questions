@@ -1,7 +1,6 @@
 package com.ablhds.Enemquestions.metricas;
 
 public final class MetricasMapper {
-
     public static MetricasDto entityToDto(Metricas metricas) {
         return new MetricasDto(
                 metricas.getId(),
@@ -13,13 +12,13 @@ public final class MetricasMapper {
     }
 
     public static Metricas dtoToEntity(MetricasDto metricasDto) {
-        Metricas metricas = new Metricas();
-
-        metricas.setId(metricasDto.id());
-        metricas.setSegundosTotaisDeProva(metricasDto.segundosTotaisDeProva());
-        metricas.setSegundosMediosPorQuestao(metricasDto.segundosMediosPorQuestao());
-        metricas.setQuantidadeDeAcertos(metricasDto.quantidadeDeAcertos());
-        metricas.setNota(metricasDto.nota());
-        return metricas;
+        return new Metricas(
+                metricasDto.id(),
+                metricasDto.segundosTotaisDeProva(),
+                metricasDto.segundosMediosPorQuestao(),
+                metricasDto.quantidadeDeAcertos(),
+                metricasDto.nota(),
+                null
+        );
     }
 }

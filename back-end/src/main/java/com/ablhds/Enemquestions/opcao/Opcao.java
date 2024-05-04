@@ -2,6 +2,7 @@ package com.ablhds.Enemquestions.opcao;
 
 import com.ablhds.Enemquestions.questao.Questao;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -9,6 +10,7 @@ import lombok.NonNull;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Opcao {
     @Id
     @GeneratedValue
@@ -20,7 +22,7 @@ public class Opcao {
     @NonNull
     private String texto;
 
-    @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @Column(nullable = false)
     private Questao questao;
 }

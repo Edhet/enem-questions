@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class UsuarioMapper {
-
     public static UsuarioDto entityToDto(Usuario usuario) {
         List<AplicacaoProvaDto> aplicacaoProvaDtos = usuario.getAplicacoesProva()
                 .stream()
@@ -34,7 +33,6 @@ public final class UsuarioMapper {
     }
 
     public static Usuario dtoToEntity(UsuarioDto usuarioDto) {
-
         TipoAcesso tipoAcesso = TipoAcesso.valueOf(usuarioDto.tipoUsuario());
 
         List<Permissao> permissoes = usuarioDto.permissoes()
@@ -46,15 +44,14 @@ public final class UsuarioMapper {
                 .stream()
                 .map(AplicacaoProvaMapper::dtoToEntity).collect(Collectors.toList());
 
-
-        Usuario usuario = new Usuario();
-
-        usuario.setId((usuarioDto.id()));
-        usuario.setNome(usuarioDto.nome());
-        usuario.setEmail(usuarioDto.email());
-        usuario.setTipoUsuario(tipoAcesso);
-        usuario.setPermissoes(permissoes);
-        usuario.setAplicacoesProva(aplicacoesProva);
-        return usuario;
+        return new Usuario(
+                usuarioDto.id(),
+                usuarioDto.nome(),
+                usuarioDto.email(),
+                null,
+                tipoAcesso,
+                permissoes,
+                aplicacoesProva
+        );
     }
 }

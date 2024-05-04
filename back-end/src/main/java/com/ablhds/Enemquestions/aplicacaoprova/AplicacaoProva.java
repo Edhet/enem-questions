@@ -5,6 +5,7 @@ import com.ablhds.Enemquestions.prova.Prova;
 import com.ablhds.Enemquestions.resposta.Resposta;
 import com.ablhds.Enemquestions.usuario.Usuario;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -15,15 +16,18 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class AplicacaoProva {
     @Id
     @GeneratedValue
     private Long id;
 
     @NonNull
+    @Column(nullable = false)
     private EstadoAplicacaoProva estadoAplicacaoProva;
 
     @NonNull
+    @Column(nullable = false)
     private LocalDateTime tempoInicioDeAplicacao;
 
     private LocalDateTime tempoFimDeAplicacao;
@@ -33,13 +37,14 @@ public class AplicacaoProva {
 
     @NonNull
     @OneToOne(fetch = FetchType.EAGER)
+    @Column(nullable = false)
     private Metricas metricas;
 
-    @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @Column(nullable = false)
     private Usuario aplicante;
 
-    @NonNull
     @ManyToOne
+    @Column(nullable = false)
     private Prova prova;
 }

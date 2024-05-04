@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class QuestaoMapper {
-
     public static QuestaoDto entityToDto(Questao questao) {
         List<OpcaoDto> opcaoDtos = questao.getOpcoes()
                 .stream()
@@ -23,17 +22,18 @@ public final class QuestaoMapper {
     }
 
     public static Questao dtoToEntity(QuestaoDto questaoDto) {
-
         List<Opcao> opcoes = questaoDto.opcoes()
                 .stream()
                 .map(OpcaoMapper::dtoToEntity)
                 .collect(Collectors.toList());
 
-        Questao questao = new Questao();
-        questao.setId(questaoDto.id());
-        questao.setNumeroQuestao(questaoDto.numeroQuestao());
-        questao.setOpcoes(opcoes);
-
-        return questao;
+        return new Questao(
+                questaoDto.id(),
+                null,
+                questaoDto.numeroQuestao(),
+                null,
+                opcoes,
+                null
+        );
     }
 }
