@@ -39,6 +39,5 @@ public class Prova {
     private Boolean provaExcluida;
 
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-    @Column(nullable = false)
     private List<Questao> questoes;
 }

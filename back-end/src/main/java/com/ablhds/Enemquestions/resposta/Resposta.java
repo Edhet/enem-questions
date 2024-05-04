@@ -18,14 +18,11 @@ public class Resposta {
     private Long id;
 
     @ManyToOne
-    @Column(nullable = false)
     private Questao questao;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @Column(nullable = false)
     private Opcao opcaoEscolhida;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false)
     private AplicacaoProva aplicacaoProva;
 }

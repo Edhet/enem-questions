@@ -40,6 +40,5 @@ public class Usuario {
     private List<Permissao> permissoes;
 
     @OneToMany
-    @Column(nullable = false)
     private List<AplicacaoProva> aplicacoesProva;
 }

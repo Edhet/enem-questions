@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgres_container
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=enem-questions
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - /enem-questions-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin", "-d", "enem-questions" ]
+      interval: 5s
+      retries: 5
+    restart: always
+
+  backend:
+    build:
+      dockerfile: ./back-end/Dockerfile
+    container_name: backend_container
+    ports:
+      - 8080:8080
+    environment:
+      db-url: jdbc:postgresql://postgres:5432/enem-questions
+      db-username: admin
+      db-password: admin
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: always
+
+volumes:
+  enem-questions-volume:
+    external: false

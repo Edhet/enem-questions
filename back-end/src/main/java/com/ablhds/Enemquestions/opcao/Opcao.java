@@ -23,6 +23,5 @@ public class Opcao {
     private String texto;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false)
     private Questao questao;
 }
