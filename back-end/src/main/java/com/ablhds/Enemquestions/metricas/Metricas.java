@@ -24,6 +24,5 @@ public class Metricas {
     private Float nota;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false)
     private AplicacaoProva aplicacaoProva;
 }

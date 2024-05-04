@@ -37,14 +37,11 @@ public class AplicacaoProva {
 
     @NonNull
     @OneToOne(fetch = FetchType.EAGER)
-    @Column(nullable = false)
     private Metricas metricas;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false)
     private Usuario aplicante;
 
     @ManyToOne
-    @Column(nullable = false)
     private Prova prova;
 }

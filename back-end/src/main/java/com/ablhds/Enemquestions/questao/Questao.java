@@ -27,15 +27,12 @@ public class Questao {
     private Integer numeroQuestao;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false)
     private Prova prova;
 
     @NonNull
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-    @Column(nullable = false)
     private List<Opcao> opcoes;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false)
     private Opcao opcaoCorreta;
 }
