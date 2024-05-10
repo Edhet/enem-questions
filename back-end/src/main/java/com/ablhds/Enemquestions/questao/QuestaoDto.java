@@ -7,6 +7,7 @@ import java.util.List;
 public record QuestaoDto(
         long id,
         int numeroQuestao,
-        List<OpcaoDto> opcoes
+        List<OpcaoDto> opcoes,
+        String enunciado
 ) {
 }
