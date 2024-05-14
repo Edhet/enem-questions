@@ -30,6 +30,10 @@ public class Questao {
     private Prova prova;
 
     @NonNull
+    @Column(nullable = false)
+    private String enunciado;
+
+    @NonNull
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Opcao> opcoes;
 

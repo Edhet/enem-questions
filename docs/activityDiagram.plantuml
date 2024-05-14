@@ -1,0 +1,17 @@
+@startuml AD
+
+|Usuário|
+
+start
+
+|Usuário|
+:Seleciona a opção "Visualizar Dados Gerais";
+
+|Sistema|
+:Exibe os dados do Usuário;
+
+note right: Numero de provas realizadas, \nmédia de pontuação, entre outros.
+
+stop
+
+@enduml
