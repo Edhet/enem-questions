@@ -16,7 +16,6 @@ services:
       test: [ "CMD", "pg_isready", "-U", "admin", "-d", "enem-questions" ]
       interval: 5s
       retries: 5
-    restart: always
 
   redis:
     image: 'redis:latest'
@@ -43,7 +42,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    restart: always
 
   frontend:
     build:
