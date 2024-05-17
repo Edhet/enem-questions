@@ -14,9 +14,21 @@ services:
       - /enem-questions-volume:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "admin", "-d", "enem-questions" ]
-      interval: 5s
+      interval: 1s
       retries: 5
-    restart: always
+
+  redis:
+    image: 'redis:latest'
+    container_name: redis_container
+    command: /bin/sh -c "redis-server --requirepass $${REDIS_PASSWORD_VALUE}"
+    environment:
+      REDIS_PASSWORD_VALUE: ${REDIS_PASSWORD}
+    ports:
+      - 8084:6379
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+      interval: 1s
+      retries: 5
 
   backend:
     build:
@@ -28,10 +40,14 @@ services:
       db-url: jdbc:postgresql://postgres:5432/enem-questions
       db-username: ${POSTGRES_USERNAME}
       db-password: ${POSTGRES_PASSWORD}
+      redis-host: localhost
+      redis-port: 8084
+      redis-password: ${REDIS_PASSWORD}
     depends_on:
       postgres:
         condition: service_healthy
-    restart: always
+      redis:
+        condition: service_healthy
 
   frontend:
     build:
@@ -42,6 +58,10 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_started
 
 volumes:
   enem-questions-volume:

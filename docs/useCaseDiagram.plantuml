@@ -1,0 +1,63 @@
+@startuml UC
+
+left to right direction
+
+actor Usuário as USER
+actor Administrador as ADM
+
+rectangle Sistema {
+    usecase UC1 #YellowGreen as "Realizar Prova
+    --
+    UC01"
+
+    usecase UC2 #YellowGreen as "Refazer Prova Finalizada
+    --
+    UC02"
+
+    usecase UC3 #YellowGreen as "Continuar Prova Pausada
+    --
+    UC03"
+
+    usecase UC4 #YellowGreen as "Ver Resultado de uma Prova Finalizada
+    --
+    UC04"
+
+    usecase UC5 #YellowGreen as "Visualizar Dados Gerais
+    --
+    UC05"
+
+    usecase UC6 #YellowGreen as "Efetuar Cadastro
+    --
+    UC06"
+
+    usecase UC7 #YellowGreen as "Efetuar Login
+    --
+    UC07"
+
+    usecase UC8 #YellowGreen as "Efetuar Logout
+    --
+    UC08"
+
+    usecase UC9 #YellowGreen as "Atualizar o Sistema
+    --
+    UC09"
+
+     usecase UC10 #YellowGreen as "Desistir da Prova
+    --
+    UC10"
+}
+
+USER -- UC1
+USER -- UC4
+USER -- UC5
+USER -- UC6 
+USER -- UC7 
+USER -- UC8
+
+ADM -- UC9 
+
+UC1 <.. UC2 : <<extend>>
+UC1 <.. UC3 : <<extend>>
+UC1 <.left. UC10 : <<extend>>
+
+@enduml
