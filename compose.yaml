@@ -14,7 +14,7 @@ services:
       - /enem-questions-volume:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "admin", "-d", "enem-questions" ]
-      interval: 5s
+      interval: 1s
       retries: 5
 
   redis:
@@ -25,6 +25,10 @@ services:
       REDIS_PASSWORD_VALUE: ${REDIS_PASSWORD}
     ports:
       - 8084:6379
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+      interval: 1s
+      retries: 5
 
   backend:
     build:
@@ -42,6 +46,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
 
   frontend:
     build:
@@ -52,6 +58,10 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_started
 
 volumes:
   enem-questions-volume:
