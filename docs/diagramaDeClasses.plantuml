@@ -1,0 +1,93 @@
+@startuml
+
+/' CLASSES '/
+
+class Prova{
+    - areaProva: AreaProva
+    - diaProva: DiaDeProva
+    - ano: int
+    - cor: String
+    - provaExcluida: boolean
+    - questoes: List<Questao>
+}
+
+class Usuario{
+    - nome: String
+    - email: String
+    - senha: String
+    - tipoUsuario: TipoUsuario
+    - permissoes: List<Permissao>
+}
+
+class Questao{
+    - tipoQuestoes: TipoQuestoes
+    - prova: Prova
+    - numeroQuestão: int
+    - Opcoes: List<Opcoes>
+    - OpcaoCorreta: Opcao
+    - EnunciadoQuestao: String
+}
+
+class Metricas{
+    - tempoTotalDeProva: int
+    - tempoMedioDasQuestoes: int
+    - notaCalculada: float
+    - quantidadeDeAcertos: int
+    - quantidadeTotalDeQuestoes: int
+}
+
+class AplicacaoProva{
+    - statusAplicacaoProva: StatusAplicacaoProva
+    - tempoInicio: Timestamp
+    - tempoFim: Timestamp
+    - metricas: Metricas
+    - respostas: List<Opcao>
+}
+
+class Permissao{
+    - acao: String
+    - tipoPermissao: TipoUsuario
+}
+
+class Opcao{
+    - texto: String
+    - label: String
+    - questao: Questao
+}
+class Resposta{
+    - aplicacaoProva : AplicacaoProva
+    - opcaoEscolhida : Opcao
+    - questao : Questao
+}
+
+
+/' RELAÇÕES '/
+
+Prova "1..*" -- "0..*" AplicacaoProva
+Prova  *--  Questao
+Questao *--  Opcao
+
+
+Usuario "1" -- "0..*" AplicacaoProva
+Usuario "0..*" -- "1..*" Permissao
+
+Metricas --o AplicacaoProva
+
+AplicacaoProva "1" -- "0..*" Resposta
+
+Opcao "1" -- "0..*" Resposta
+
+Questao "1" -- "0..*" Resposta
+
+/' NOTAS'/
+
+note bottom of Permissao: Permissões para as ações do usuário
+note top of Usuario: Informações do usuário
+note top of Questao: Entidade que constitui uma prova
+note top of Prova : Informações da prova
+note top of AplicacaoProva : Informações de uma aplicação de prova
+note top of Metricas : Métricas calculadas da aplicação de prova
+note bottom of Opcao : Texto e opções da questão
+note left of Resposta : Resposta da Aplicação de prova
+
+@enduml

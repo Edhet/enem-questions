@@ -1,0 +1,32 @@
+@startuml
+
+Enum AreaProva{
+    + EXATAS
+    + NATUREZAS
+    + HUMANAS
+    + LINGUAGENS
+}
+
+Enum NivelQuestao{
+    + DIFICIL
+    + MEDIO
+    + FACIL
+}
+
+Enum TipoUsuario{
+    + ALUNO
+    + ADMINISTRADOR
+    + ANALISTA
+}
+
+Enum DiaDeProva{
+    + PRIMEIRO
+    + SEGUNDO
+}
+
+Enum StatusAplicacaoProva{
+    + FINALIZADA
+    + ANDAMENTO
+}
+
+@enduml
