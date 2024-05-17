@@ -1,0 +1,60 @@
+@startuml SD
+
+mainframe Realizar Cadastro
+
+actor Usuário
+
+Usuário -> Sistema: 1: Seleciona opção de se cadastrar()
+
+activate Usuário
+activate Sistema
+
+Sistema --> Usuário: 2: Solicita os dados()
+
+deactivate Usuário
+deactivate Sistema
+
+Usuário -> Sistema: 3: Insere os dados("Nome", "E-mail", "Senha")
+
+'Início Usuário
+activate Usuário
+
+'Início Sistema
+activate Sistema
+
+Sistema -> Sistema: 4: Verifica os dados("Nome", "E-mail", "Senha")
+
+activate Sistema
+deactivate Sistema
+
+alt dados inválidos
+
+    Sistema -> Sistema: 5: Informa ao Usuário("Erro: dados inválidos.")
+
+    activate Sistema
+    deactivate Sistema
+
+    'Dúvida no elemento abaixo
+    Sistema -> Sistema: 6: Redireciona o Usuário para o passo 2
+
+    activate Sistema
+    deactivate Sistema
+
+else dados válidos
+
+    Sistema -> Sistema: 7: Cadastra o Usuário()
+
+    activate Sistema
+    deactivate Sistema
+
+    Sistema --> Usuário: 8: Redireciona o Usuário para a página inicial()
+
+end
+
+'Fim Usuário
+deactivate Usuário
+
+'Fim Sistema
+deactivate Sistema
+
+@enduml

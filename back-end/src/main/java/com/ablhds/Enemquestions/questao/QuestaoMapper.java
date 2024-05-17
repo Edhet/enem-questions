@@ -17,7 +17,8 @@ public final class QuestaoMapper {
         return new QuestaoDto(
                 questao.getId(),
                 questao.getNumeroQuestao(),
-                opcaoDtos // passar essa lista de opcoes para opcoes dto
+                opcaoDtos,
+                questao.getEnunciado()// passar essa lista de opcoes para opcoes dto
         );
     }
 
@@ -32,6 +33,7 @@ public final class QuestaoMapper {
                 null,
                 questaoDto.numeroQuestao(),
                 null,
+                questaoDto.enunciado(),
                 opcoes,
                 null
         );
