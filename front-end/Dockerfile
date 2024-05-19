@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:lts-alpine3.19
 
 RUN npm install -g http-server
 WORKDIR /app

@@ -2,7 +2,7 @@ name: enem-questions
 
 services:
   postgres:
-    image: 'postgres:latest'
+    image: 'postgres:13.15-bullseye'
     container_name: postgres_container
     ports:
       - 8083:5432
@@ -18,7 +18,7 @@ services:
       retries: 5
 
   redis:
-    image: 'redis:latest'
+    image: 'redis:alpine3.19'
     container_name: redis_container
     command: /bin/sh -c "redis-server --requirepass $${REDIS_PASSWORD_VALUE}"
     environment:
