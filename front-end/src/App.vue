@@ -1,17 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <SingUpPage />
+  <LoginPage />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SingUpPage from './components/SingUpPage.vue'
+import LoginPage from './components/LoginPage.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SingUpPage,
+    LoginPage,
   }
-}
+};
 </script>
 
 <style src="./assets/tailwind.css"/>
