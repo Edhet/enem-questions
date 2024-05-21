@@ -2,7 +2,7 @@ name: enem-questions
 
 services:
   postgres:
-    image: 'postgres:13.15-bullseye'
+    image: 'postgres:alpine3.19'
     container_name: postgres_container
     ports:
       - 8083:5432
