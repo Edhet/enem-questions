@@ -7,20 +7,23 @@
                         Acessar Conta
                     </h2>
                     <p class="mb-4">
-                        Acesse a sua conta para continuar.
+                        Não possui uma conta? Crie uma conta
+                        <a href="COLOCAR LINK PARA SIGN UP" class="font-semibold text-blue-800 underline">
+                            AQUI.
+                        </a>
                     </p>
-                    <form action="#">
+                    <form>
                         <div class="mt-5">
                             <input type="text" placeholder="E-mail" class="border border-gray-400 py-1 px-2 w-full">
                         </div>
                         <div class="mt-5 relative flex items-center">
                             <input v-model="senha" :type="mostrarSenha ? 'text' : 'password'" placeholder="Senha" class="border border-gray-400 py-1 px-2 w-full pr-10">
-                            <button @click="mostrarSenha = !mostrarSenha" class="absolute right-0 px-1 h-6 rounded-l-lg rounded-r-lg" :class="{ 'bg-blue-600 text-white': mostrarSenha, 'bg-blue-800 text-white': !mostrarSenha }" style="font-size: 0.75rem; margin-right: 5px;">
+                            <button @click="mostrarSenha = !mostrarSenha; $event.preventDefault()" class="absolute right-0 px-1 h-6 rounded-l-lg rounded-r-lg" :class="{ 'bg-blue-600 text-white': mostrarSenha, 'bg-blue-800 text-white': !mostrarSenha }" style="font-size: 0.75rem; margin-right: 5px;">
                                 {{ mostrarSenha ? 'Ocultar' : 'Mostrar' }}
                             </button>
                         </div>
                         <div class="mt-5">
-                            <button class="w-full bg-blue-800 py-3 text-center text-white">
+                            <button class="w-full bg-blue-800 py-3 text-center text-white rounded-md">
                                 Acessar Conta
                             </button>
                         </div>
