@@ -29,7 +29,8 @@ public final class UsuarioMapper {
                 usuario.getEmail(),
                 usuario.getTipoUsuario().toString(),
                 permissaoDtos,
-                aplicacaoProvaDtos);
+                aplicacaoProvaDtos
+        );
     }
 
     public static Usuario dtoToEntity(UsuarioDto usuarioDto) {
