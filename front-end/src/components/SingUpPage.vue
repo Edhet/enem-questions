@@ -8,9 +8,10 @@
                     </h2>
                     <p class="mb-4">
                         Já está cadastrado? Acesse a sua conta 
-                        <a href="COLOCAR LINK PARA LOGIN" class="font-semibold text-blue-800 underline">
+                        <!--a href="COLOCAR LINK PARA LOGIN" class="font-semibold text-blue-800 underline">
                             AQUI.
-                        </a>
+                        </a-->
+                        <RouterLink to="/" class="font-semibold text-blue-800 underline">AQUI</RouterLink>
                     </p>
                     <form>
                         <div class="grid grid-cols-2 gap-5">
