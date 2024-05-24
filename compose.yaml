@@ -1,11 +1,25 @@
 name: enem-questions
 
 services:
+
+  nginx:
+    image: 'nginx:1.25.5'
+    container_name: nginx_container
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - proxy
+
   postgres:
-    image: 'postgres:13.15-bullseye'
+    image: 'postgres:alpine3.19'
     container_name: postgres_container
     ports:
       - 8083:5432
+    networks:
+      - proxy
     environment:
       - POSTGRES_DB=enem-questions
       - POSTGRES_USER=${POSTGRES_USERNAME}
@@ -25,6 +39,8 @@ services:
       REDIS_PASSWORD_VALUE: ${REDIS_PASSWORD}
     ports:
       - 8084:6379
+    networks:
+      - proxy
     healthcheck:
       test: ["CMD", "redis-cli","ping"]
       interval: 1s
@@ -34,8 +50,10 @@ services:
     build:
       dockerfile: ./back-end/Dockerfile
     container_name: backend_container
-    ports:
-      - 8080:8080
+    # ports:
+    #  - 8080:8080
+    networks:
+      - proxy
     environment:
       db-url: jdbc:postgresql://postgres:5432/enem-questions
       db-username: ${POSTGRES_USERNAME}
@@ -48,20 +66,30 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      nginx:
+        condition: service_started
 
   frontend:
     build:
       dockerfile: ./front-end/Dockerfile
     container_name: frontend_container
-    ports:
-      - 8081:8080
+    # ports:
+    #  - 8081:8080
+    networks:
+      - proxy
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
+      nginx:
+        condition: service_started
       backend:
         condition: service_started
+
+networks:
+  proxy:
+    driver: bridge
 
 volumes:
   enem-questions-volume:
