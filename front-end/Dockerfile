@@ -7,4 +7,4 @@ RUN npm install
 COPY ./front-end/. .
 RUN npm run build
 
-CMD [ "dist" ]
+CMD [ "npm", "run", "serve" ]

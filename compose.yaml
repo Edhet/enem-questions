@@ -1,7 +1,6 @@
 name: enem-questions
 
 services:
-
   nginx:
     image: 'nginx:1.25.5'
     container_name: nginx_container
@@ -12,12 +11,17 @@ services:
       - "443:443"
     networks:
       - proxy
+    depends_on:
+      backend:
+        condition: service_started
+      frontend:
+        condition: service_started
 
   postgres:
     image: 'postgres:alpine3.19'
     container_name: postgres_container
     ports:
-      - 8083:5432
+      - 5432:5432
     networks:
       - proxy
     environment:
@@ -38,7 +42,7 @@ services:
     environment:
       REDIS_PASSWORD_VALUE: ${REDIS_PASSWORD}
     ports:
-      - 8084:6379
+      - 6379:6379
     networks:
       - proxy
     healthcheck:
@@ -50,8 +54,6 @@ services:
     build:
       dockerfile: ./back-end/Dockerfile
     container_name: backend_container
-    # ports:
-    #  - 8080:8080
     networks:
       - proxy
     environment:
@@ -59,7 +61,7 @@ services:
       db-username: ${POSTGRES_USERNAME}
       db-password: ${POSTGRES_PASSWORD}
       redis-host: localhost
-      redis-port: 8084
+      redis-port: 6379
       redis-password: ${REDIS_PASSWORD}
       jwt-secret: ${JWT_SECRET}
     depends_on:
@@ -67,15 +69,11 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-      nginx:
-        condition: service_started
 
   frontend:
     build:
       dockerfile: ./front-end/Dockerfile
     container_name: frontend_container
-    # ports:
-    #  - 8081:8080
     networks:
       - proxy
     depends_on:
@@ -83,10 +81,6 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-      nginx:
-        condition: service_started
-      backend:
-        condition: service_started
 
 networks:
   proxy:
