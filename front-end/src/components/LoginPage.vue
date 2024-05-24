@@ -10,8 +10,6 @@
                         Não possui uma conta? Crie uma conta
                         <!--a href="COLOCAR LINK PARA SIGN UP" class="font-semibold text-blue-800 underline">
                             AQUI.
-
-
                         </a-->
                         <RouterLink to="/signUp"  class="font-semibold text-blue-800 underline"> AQUI</RouterLink>
                     </p>
