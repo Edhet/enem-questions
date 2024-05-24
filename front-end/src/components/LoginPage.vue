@@ -8,9 +8,12 @@
                     </h2>
                     <p class="mb-4">
                         Não possui uma conta? Crie uma conta
-                        <a href="COLOCAR LINK PARA SIGN UP" class="font-semibold text-blue-800 underline">
+                        <!--a href="COLOCAR LINK PARA SIGN UP" class="font-semibold text-blue-800 underline">
                             AQUI.
-                        </a>
+
+
+                        </a-->
+                        <RouterLink to="/signUp"  class="font-semibold text-blue-800 underline"> AQUI</RouterLink>
                     </p>
                     <form>
                         <div class="mt-5">
