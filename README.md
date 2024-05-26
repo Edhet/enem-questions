@@ -16,8 +16,11 @@ Banco de dados: Postgres e Redis
 
 ## Como executar?
 
-Na raíz do projeto, crie um arquivo `.env` e adicione as variáveis de ambiente dos bancos de dados:
+Na raíz do projeto, crie um arquivo `.env` e adicione as seguintes variáveis de ambiente:
 
-`POSTGRES_USERNAME=admin` & `POSTGRES_PASSWORD=admin`
+`POSTGRES_USERNAME`
+`POSTGRES_PASSWORD`
+`REDIS_PASSWORD`
+`JWT_SECRET`
 
 em seguida dê docker-compose up.
