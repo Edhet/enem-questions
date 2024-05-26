@@ -15,10 +15,10 @@ public class ErrorHandler {
         HttpStatus status = e.getClass().getAnnotation(ResponseStatus.class).value();
 
         ErrorDto errorResponse = new ErrorDto(
+                LocalDateTime.now(),
                 status.value(),
                 status.getReasonPhrase(),
-                e.getMessage(),
-                LocalDateTime.now()
+                e.getMessage()
         );
         return ResponseEntity.status(status.value()).body(errorResponse);
     }
