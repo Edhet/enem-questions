@@ -8,12 +8,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Permissao {
+public class Permissao implements GrantedAuthority {
     @Id
     @GeneratedValue
     private Long id;
@@ -25,4 +26,9 @@ public class Permissao {
     @NonNull
     @Column(nullable = false)
     private TipoAcesso tipoPermissao;
+
+    @Override
+    public String getAuthority() {
+        return acao;
+    }
 }
