@@ -1,5 +1,8 @@
 package com.ablhds.Enemquestions.security;
 
+import com.ablhds.Enemquestions.exception.BadRequestException;
+import com.ablhds.Enemquestions.exception.ErrorMessages;
+import com.ablhds.Enemquestions.exception.UnauthorizedException;
 import com.ablhds.Enemquestions.permissao.TipoAcesso;
 import com.ablhds.Enemquestions.usuario.Usuario;
 import com.ablhds.Enemquestions.usuario.UsuarioService;
@@ -21,11 +24,14 @@ public class AuthService {
     private final JwtService jwtService;
 
     public LoginResponseDto login(LoginRequestDto loginRequestDto) {
-        Usuario usuario = usuarioService.findByEmail(loginRequestDto.email());
+        Usuario usuario;
         try {
+            usuario = usuarioService.findByEmail(loginRequestDto.email());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.email(), loginRequestDto.senha()));
+        } catch (BadRequestException e) {
+            throw new UnauthorizedException(ErrorMessages.USUARIO_EMAIL_INVALIDO);
         } catch (AuthenticationException e) {
-            throw new RuntimeException("Senha inválida");
+            throw new UnauthorizedException(ErrorMessages.USUARIO_SENHA_INVALIDA);
         }
         return new LoginResponseDto(jwtService.generateToken(usuario));
     }
@@ -44,10 +50,10 @@ public class AuthService {
                     new ArrayList<>()
             );
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException("O campo 'senha' está vazio");
+            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted("senha"));
         } catch (NullPointerException e) {
             String campo = e.getMessage().split(" ")[0];
-            throw new RuntimeException("O campo '" + campo + "' está vazio");
+            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted(campo));
         }
         usuarioService.addUsuario(novoUsuario);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(cadastroRequestDto.email(), cadastroRequestDto.senha()));
