@@ -1,4 +1,4 @@
-FROM maven:latest as builder
+FROM maven:3.9.6-eclipse-temurin-22 as builder
 COPY ./back-end/src src/
 COPY ./back-end/pom.xml pom.xml
 RUN mvn clean package -DskipTests
