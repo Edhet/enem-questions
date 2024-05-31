@@ -52,7 +52,8 @@ public final class UsuarioMapper {
                 null,
                 tipoAcesso,
                 permissoes,
-                aplicacoesProva
+                aplicacoesProva,
+                null
         );
     }
 }

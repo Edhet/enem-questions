@@ -14,15 +14,16 @@ public class AuthController {
      * válido, do contrário, não.
      */
     @GetMapping
-    public void runAuthFilter() { }
+    public void runAuthFilter() {
+    }
 
     @PostMapping("/login")
     public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto) {
-        return authService.login(loginRequestDto);
+        return authService.autenticarSessao(loginRequestDto);
     }
 
     @PostMapping("/cadastro")
     public LoginResponseDto cadastrar(@RequestBody CadastroRequestDto cadastroRequestDto) {
-        return authService.cadastrarUsuarioFinal(cadastroRequestDto);
+        return authService.cadastrarUsuario(cadastroRequestDto);
     }
 }

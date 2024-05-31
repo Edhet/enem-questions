@@ -15,6 +15,7 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${jwt-secret}")
     private String SECRET;
+
     private int DEFAULT_EXPIRATION_TIME = 86_400_000; //24Hr -> Millis
 
     public SecretKey getSigningKey() {

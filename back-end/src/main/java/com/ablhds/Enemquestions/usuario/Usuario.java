@@ -45,6 +45,8 @@ public class Usuario implements UserDetails {
     @OneToMany
     private List<AplicacaoProva> aplicacoesProva;
 
+    private Boolean contaAtiva;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -77,6 +79,6 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return contaAtiva;
     }
 }

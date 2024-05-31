@@ -29,6 +29,7 @@ import java.util.List;
 @AllArgsConstructor
 public class WebSecurityConfiguration {
     private final UsuarioService usuarioService;
+
     private final JwtAuthFilter jwtAuthFilter;
 
     @Bean

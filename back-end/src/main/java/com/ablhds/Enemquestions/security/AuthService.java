@@ -10,20 +10,18 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
 public class AuthService {
     private final AuthenticationManager authenticationManager;
-    private final PasswordEncoder passwordEncoder;
-    private final UsuarioService usuarioService;
+
     private final JwtService jwtService;
 
-    public LoginResponseDto login(LoginRequestDto loginRequestDto) {
+    private UsuarioService usuarioService;
+
+    public LoginResponseDto autenticarSessao(LoginRequestDto loginRequestDto) {
         Usuario usuario;
         try {
             usuario = usuarioService.findByEmail(loginRequestDto.email());
@@ -36,26 +34,8 @@ public class AuthService {
         return new LoginResponseDto(jwtService.generateToken(usuario));
     }
 
-    public LoginResponseDto cadastrarUsuarioFinal(CadastroRequestDto cadastroRequestDto) {
-        // TODO: Dar permissões padrão de usuário final
-        Usuario novoUsuario;
-        try {
-            novoUsuario = new Usuario(
-                    null,
-                    cadastroRequestDto.nome(),
-                    cadastroRequestDto.email(),
-                    passwordEncoder.encode(cadastroRequestDto.senha()),
-                    TipoAcesso.USUARIO_FINAL,
-                    new ArrayList<>(),
-                    new ArrayList<>()
-            );
-        } catch (IllegalArgumentException e) {
-            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted("senha"));
-        } catch (NullPointerException e) {
-            String campo = e.getMessage().split(" ")[0];
-            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted(campo));
-        }
-        usuarioService.addUsuario(novoUsuario);
+    public LoginResponseDto cadastrarUsuario(CadastroRequestDto cadastroRequestDto) {
+        Usuario novoUsuario = usuarioService.cadastrarUsuario(cadastroRequestDto, TipoAcesso.USUARIO_FINAL);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(cadastroRequestDto.email(), cadastroRequestDto.senha()));
         return new LoginResponseDto(jwtService.generateToken(novoUsuario));
     }
