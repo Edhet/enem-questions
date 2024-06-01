@@ -5,19 +5,24 @@ import com.ablhds.Enemquestions.exception.ErrorMessages;
 import com.ablhds.Enemquestions.exception.NotFoundException;
 import com.ablhds.Enemquestions.permissao.TipoAcesso;
 import com.ablhds.Enemquestions.security.CadastroRequestDto;
+import com.ablhds.Enemquestions.security.JwtService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class UsuarioService implements UserDetailsService {
     private final UsuarioRepository usuarioRepository;
+
+    private final JwtService jwtService;
 
     public Usuario cadastrarUsuario(CadastroRequestDto cadastroRequestDtoCriptografado, TipoAcesso tipoAcessoUsuario) {
         if (cadastroRequestDtoCriptografado.senha() == null || cadastroRequestDtoCriptografado.senha().isEmpty())
@@ -49,6 +54,33 @@ public class UsuarioService implements UserDetailsService {
         if (usuarioRepository.existsByEmail(usuario.getEmail()))
             throw new BadRequestException(ErrorMessages.USUARIO_EMAIL_EM_USO);
         return usuarioRepository.save(usuario);
+    }
+
+    public UsuarioDto getInformacoesDoUsuario(String authHeader) {
+        return UsuarioMapper.entityToDto(findByAuthHeader(authHeader));
+    }
+
+    public void desativarConta(String authHeader) {
+        Usuario usuario = findByAuthHeader(authHeader);
+        if (!usuario.getContaAtiva())
+            throw new BadRequestException(ErrorMessages.CONTA_DESATIVADA);
+        usuario.setContaAtiva(false);
+    }
+
+    public void ativarConta(String email) {
+        Usuario usuario = findByEmail(email);
+        if (usuario.getContaAtiva())
+            throw new BadRequestException(ErrorMessages.CONTA_ATIVADA);
+        usuario.setContaAtiva(true);
+    }
+
+    public Usuario findByAuthHeader(String authHeader) {
+        return findByToken(jwtService.getTokenFromAuthHeader(authHeader));
+    }
+
+    public Usuario findByToken(String token) {
+        String emailUsuario = jwtService.extractEmail(token);
+        return findByEmail(emailUsuario);
     }
 
     public Usuario findById(Long id) {

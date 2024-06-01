@@ -18,6 +18,12 @@ public class JwtService {
 
     private int DEFAULT_EXPIRATION_TIME = 86_400_000; //24Hr -> Millis
 
+    public String getTokenFromAuthHeader(String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer "))
+            throw new IllegalArgumentException("Tried to parse and invalid authorization header with no JWT token");
+        return authHeader.substring(7).trim();
+    }
+
     public SecretKey getSigningKey() {
         byte[] keyBytes = SECRET.getBytes();
         return Keys.hmacShaKeyFor(keyBytes);

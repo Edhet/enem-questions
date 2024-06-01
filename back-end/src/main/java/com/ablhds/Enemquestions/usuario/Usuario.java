@@ -42,7 +42,7 @@ public class Usuario implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Permissao> permissoes;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<AplicacaoProva> aplicacoesProva;
 
     private Boolean contaAtiva;
