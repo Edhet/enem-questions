@@ -67,8 +67,7 @@ public class UsuarioService implements UserDetailsService {
         usuario.setContaAtiva(false);
     }
 
-    public void ativarConta(String email) {
-        Usuario usuario = findByEmail(email);
+    public void ativarConta(Usuario usuario) {
         if (usuario.getContaAtiva())
             throw new BadRequestException(ErrorMessages.CONTA_ATIVADA);
         usuario.setContaAtiva(true);

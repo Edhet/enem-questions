@@ -1,5 +1,7 @@
 package com.ablhds.Enemquestions.usuario;
 
+import com.ablhds.Enemquestions.security.AuthService;
+import com.ablhds.Enemquestions.security.LoginRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class UsuarioController {
     private final UsuarioService usuarioService;
+
+    private final AuthService authService;
 
     @GetMapping("/info")
     public UsuarioDto informacoesDoUsuario(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader) {
@@ -21,7 +25,7 @@ public class UsuarioController {
     }
 
     @PatchMapping("/ativar")
-    public void ativar(@RequestBody String email) {
-        usuarioService.ativarConta(email);
+    public void ativar(@RequestBody LoginRequestDto loginInfo) {
+        authService.ativarConta(loginInfo);
     }
 }

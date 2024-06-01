@@ -51,4 +51,11 @@ public class AuthService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(cadastroRequestDto.email(), cadastroRequestDto.senha()));
         return new LoginResponseDto(jwtService.generateToken(novoUsuario));
     }
+
+    public void ativarConta(LoginRequestDto loginRequestDto) {
+        Usuario usuario = usuarioService.findByEmail(loginRequestDto.email());
+        if (!passwordEncoder.matches(loginRequestDto.senha(), usuario.getSenha()))
+            throw new BadRequestException(ErrorMessages.USUARIO_SENHA_INVALIDA);
+        usuarioService.ativarConta(usuario);
+    }
 }
