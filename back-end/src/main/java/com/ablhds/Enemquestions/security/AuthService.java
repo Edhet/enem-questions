@@ -30,7 +30,7 @@ public class AuthService {
             usuario = usuarioService.findByEmail(loginRequestDto.email());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.email(), loginRequestDto.senha()));
         } catch (BadRequestException e) {
-            throw new UnauthorizedException(ErrorMessages.USUARIO_EMAIL_INVALIDO);
+            throw new UnauthorizedException(ErrorMessages.USUARIO_EMAIL_NAO_ENCONTRADO);
         } catch (AuthenticationException e) {
             throw new UnauthorizedException(ErrorMessages.USUARIO_SENHA_INVALIDA);
         }

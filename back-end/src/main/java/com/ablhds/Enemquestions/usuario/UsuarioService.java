@@ -56,7 +56,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public Usuario findByEmail(String email) {
-        return usuarioRepository.findByEmail(email).orElseThrow(() -> new BadRequestException(ErrorMessages.USUARIO_EMAIL_INVALIDO));
+        return usuarioRepository.findByEmail(email).orElseThrow(() -> new BadRequestException(ErrorMessages.USUARIO_EMAIL_NAO_ENCONTRADO));
     }
 
     @Override
