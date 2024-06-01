@@ -1,5 +1,7 @@
 package com.ablhds.Enemquestions.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class ErrorHandler {
+    Logger logger = LoggerFactory.getLogger(ErrorHandler.class);
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDto> customExceptionsHandler(Exception e) {
         String mensagemDeErro = e.getMessage();
@@ -18,6 +22,7 @@ public class ErrorHandler {
         if (e.getClass().getAnnotation(ResponseStatus.class) == null) {
             status = HttpStatus.INTERNAL_SERVER_ERROR;
             mensagemDeErro = "Um erro não especificado ocorreu";
+            logger.info("{}: {}", e.getClass().getName(), e.getMessage());
         } else {
             status = e.getClass().getAnnotation(ResponseStatus.class).value();
         }
