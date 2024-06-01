@@ -47,6 +47,7 @@ public class WebSecurityConfiguration {
         final DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(usuarioService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        ;
         return daoAuthenticationProvider;
     }
 

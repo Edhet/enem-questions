@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +20,9 @@ public class AuthService {
 
     private final JwtService jwtService;
 
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
+
+    private final PasswordEncoder passwordEncoder;
 
     public LoginResponseDto autenticarSessao(LoginRequestDto loginRequestDto) {
         Usuario usuario;
@@ -35,7 +38,16 @@ public class AuthService {
     }
 
     public LoginResponseDto cadastrarUsuario(CadastroRequestDto cadastroRequestDto) {
-        Usuario novoUsuario = usuarioService.cadastrarUsuario(cadastroRequestDto, TipoAcesso.USUARIO_FINAL);
+        String senhaCriptografada = cadastroRequestDto.senha() == null || cadastroRequestDto.senha().isEmpty()
+                ? null
+                : passwordEncoder.encode(cadastroRequestDto.senha());
+
+        CadastroRequestDto cadastroCriptografado = new CadastroRequestDto(
+                cadastroRequestDto.nome(),
+                cadastroRequestDto.email(),
+                senhaCriptografada
+        );
+        Usuario novoUsuario = usuarioService.cadastrarUsuario(cadastroCriptografado, TipoAcesso.USUARIO_FINAL);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(cadastroRequestDto.email(), cadastroRequestDto.senha()));
         return new LoginResponseDto(jwtService.generateToken(novoUsuario));
     }
