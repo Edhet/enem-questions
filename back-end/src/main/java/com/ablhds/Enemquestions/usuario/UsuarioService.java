@@ -5,7 +5,8 @@ import com.ablhds.Enemquestions.exception.ErrorMessages;
 import com.ablhds.Enemquestions.exception.NotFoundException;
 import com.ablhds.Enemquestions.permissao.TipoAcesso;
 import com.ablhds.Enemquestions.security.CadastroRequestDto;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,11 +16,15 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UsuarioService implements UserDetailsService {
-    private final PasswordEncoder passwordEncoder;
-
     private final UsuarioRepository usuarioRepository;
+
+    private PasswordEncoder passwordEncoder;
+
+    public void setPasswordEncoder(@Lazy PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public Usuario cadastrarUsuario(CadastroRequestDto cadastroRequestDto, TipoAcesso tipoAcessoUsuario) {
         // TODO: Dar permissões padrão de usuário final
