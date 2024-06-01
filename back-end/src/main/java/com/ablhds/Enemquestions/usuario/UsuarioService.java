@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 @Service
 @AllArgsConstructor
@@ -25,6 +26,10 @@ public class UsuarioService implements UserDetailsService {
             throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted("nome"));
         if (cadastroRequestDtoCriptografado.email() == null || cadastroRequestDtoCriptografado.email().isEmpty())
             throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted("email"));
+
+        Pattern checagemEmailValido = Pattern.compile("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}");
+        if (!checagemEmailValido.matcher(cadastroRequestDtoCriptografado.email()).matches())
+            throw new BadRequestException(ErrorMessages.CADASTRO_EMAIL_INVALIDO);
 
         // TODO: Dar permissões padrão de usuário final
         Usuario novoUsuario = new Usuario(

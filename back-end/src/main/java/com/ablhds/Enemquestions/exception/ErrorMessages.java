@@ -6,4 +6,5 @@ public interface ErrorMessages {
     String USUARIO_EMAIL_INVALIDO = "Usuário com este email não foi encontrado";
     String USUARIO_SENHA_INVALIDA = "A senha fornecida é inválida";
     String USUARIO_NAO_ENCONTRADO = "Usuário não encontrado";
+    String CADASTRO_EMAIL_INVALIDO = "O email fornecido está com o formato inválido";
 }
