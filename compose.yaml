@@ -52,7 +52,8 @@ services:
 
   backend:
     build:
-      dockerfile: ./back-end/Dockerfile
+      context: ./back-end
+      dockerfile: ./Dockerfile
     container_name: backend_container
     networks:
       - proxy
@@ -72,7 +73,8 @@ services:
 
   frontend:
     build:
-      dockerfile: ./front-end/Dockerfile
+      context: ./front-end
+      dockerfile: ./Dockerfile
     container_name: frontend_container
     networks:
       - proxy
