@@ -34,7 +34,7 @@ public class Questao {
     private String enunciado;
 
     @NonNull
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Opcao> opcoes;
 
     @OneToOne(fetch = FetchType.LAZY)

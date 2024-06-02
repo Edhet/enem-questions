@@ -20,7 +20,7 @@ public class JwtService {
 
     public String getTokenFromAuthHeader(String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer "))
-            throw new IllegalArgumentException("Tried to parse and invalid authorization header with no JWT token");
+            throw new IllegalArgumentException("Tried to parse an invalid authorization header with no JWT token");
         return authHeader.substring(7).trim();
     }
 

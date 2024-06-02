@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.time.Year;
 import java.util.List;
 
 @Entity
@@ -19,6 +18,9 @@ public class Prova {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
+    private String nome;
+
     @NonNull
     @Column(nullable = false)
     private AreaProva areaProva;
@@ -29,7 +31,7 @@ public class Prova {
 
     @NonNull
     @Column(nullable = false)
-    private Year ano;
+    private Long ano;
 
     @NonNull
     @Column(nullable = false)
@@ -38,6 +40,6 @@ public class Prova {
     @Column(nullable = false)
     private Boolean provaExcluida;
 
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Questao> questoes;
 }

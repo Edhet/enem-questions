@@ -1,5 +1,6 @@
 package com.ablhds.Enemquestions.security;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +19,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto) {
+    public LoginResponseDto login(@Valid @RequestBody LoginRequestDto loginRequestDto) {
         return authService.autenticarSessao(loginRequestDto);
     }
 
     @PostMapping("/cadastro")
-    public LoginResponseDto cadastrar(@RequestBody CadastroRequestDto cadastroRequestDto) {
+    public LoginResponseDto cadastrar(@Valid @RequestBody CadastroRequestDto cadastroRequestDto) {
         return authService.cadastrarUsuario(cadastroRequestDto);
     }
 }

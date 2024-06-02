@@ -30,7 +30,7 @@ public class AuthService {
             usuario = usuarioService.findByEmail(loginRequestDto.email());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.email(), loginRequestDto.senha()));
         } catch (BadRequestException e) {
-            throw new UnauthorizedException(ErrorMessages.USUARIO_EMAIL_NAO_ENCONTRADO);
+            throw new UnauthorizedException(ErrorMessages.USUARIO_NAO_ENCONTRADO);
         } catch (AuthenticationException e) {
             throw new UnauthorizedException(ErrorMessages.USUARIO_SENHA_INVALIDA);
         }
@@ -47,7 +47,7 @@ public class AuthService {
                 cadastroRequestDto.email(),
                 senhaCriptografada
         );
-        Usuario novoUsuario = usuarioService.cadastrarUsuario(cadastroCriptografado, TipoAcesso.USUARIO_FINAL);
+        Usuario novoUsuario = usuarioService.addUsuario(cadastroCriptografado, TipoAcesso.USUARIO_FINAL);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(cadastroRequestDto.email(), cadastroRequestDto.senha()));
         return new LoginResponseDto(jwtService.generateToken(novoUsuario));
     }

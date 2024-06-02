@@ -24,18 +24,7 @@ public class UsuarioService implements UserDetailsService {
 
     private final JwtService jwtService;
 
-    public Usuario cadastrarUsuario(CadastroRequestDto cadastroRequestDtoCriptografado, TipoAcesso tipoAcessoUsuario) {
-        if (cadastroRequestDtoCriptografado.senha() == null || cadastroRequestDtoCriptografado.senha().isEmpty())
-            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted("senha"));
-        if (cadastroRequestDtoCriptografado.nome() == null || cadastroRequestDtoCriptografado.nome().isEmpty())
-            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted("nome"));
-        if (cadastroRequestDtoCriptografado.email() == null || cadastroRequestDtoCriptografado.email().isEmpty())
-            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted("email"));
-
-        Pattern checagemEmailValido = Pattern.compile("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}");
-        if (!checagemEmailValido.matcher(cadastroRequestDtoCriptografado.email()).matches())
-            throw new BadRequestException(ErrorMessages.CADASTRO_EMAIL_INVALIDO);
-
+    public Usuario addUsuario(CadastroRequestDto cadastroRequestDtoCriptografado, TipoAcesso tipoAcessoUsuario) {
         // TODO: Dar permissões padrão de usuário final
         Usuario novoUsuario = new Usuario(
                 null,
@@ -47,13 +36,9 @@ public class UsuarioService implements UserDetailsService {
                 new ArrayList<>(),
                 true
         );
-        return addUsuario(novoUsuario);
-    }
-
-    private Usuario addUsuario(Usuario usuario) {
-        if (usuarioRepository.existsByEmail(usuario.getEmail()))
+        if (usuarioRepository.existsByEmail(novoUsuario.getEmail()))
             throw new BadRequestException(ErrorMessages.USUARIO_EMAIL_EM_USO);
-        return usuarioRepository.save(usuario);
+        return usuarioRepository.save(novoUsuario);
     }
 
     public UsuarioDto getInformacoesDoUsuario(String authHeader) {
@@ -87,7 +72,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public Usuario findByEmail(String email) {
-        return usuarioRepository.findByEmail(email).orElseThrow(() -> new BadRequestException(ErrorMessages.USUARIO_EMAIL_NAO_ENCONTRADO));
+        return usuarioRepository.findByEmail(email).orElseThrow(() -> new BadRequestException(ErrorMessages.USUARIO_NAO_ENCONTRADO));
     }
 
     @Override

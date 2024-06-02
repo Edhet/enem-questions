@@ -17,25 +17,34 @@ public final class QuestaoMapper {
         return new QuestaoDto(
                 questao.getId(),
                 questao.getNumeroQuestao(),
+                questao.getDificuldadeQuestao().toString(),
                 opcaoDtos,
-                questao.getEnunciado()// passar essa lista de opcoes para opcoes dto
+                questao.getEnunciado(),
+                null
         );
     }
 
     public static Questao dtoToEntity(QuestaoDto questaoDto) {
+        DificuldadeQuestao dificuldadeQuestao = DificuldadeQuestao.valueOf(questaoDto.dificuldadeQuestao());
+
         List<Opcao> opcoes = questaoDto.opcoes()
                 .stream()
                 .map(OpcaoMapper::dtoToEntity)
                 .collect(Collectors.toList());
 
+        Opcao opcaoCorreta = opcoes.stream()
+                .filter(opcao -> opcao.getLabel().equals(questaoDto.opcaoCorreta().label()))
+                .toList()
+                .getFirst();
+
         return new Questao(
                 questaoDto.id(),
-                null,
+                dificuldadeQuestao,
                 questaoDto.numeroQuestao(),
                 null,
                 questaoDto.enunciado(),
                 opcoes,
-                null
+                opcaoCorreta
         );
     }
 }

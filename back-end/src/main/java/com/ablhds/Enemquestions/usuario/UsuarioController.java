@@ -2,6 +2,7 @@ package com.ablhds.Enemquestions.usuario;
 
 import com.ablhds.Enemquestions.security.AuthService;
 import com.ablhds.Enemquestions.security.LoginRequestDto;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class UsuarioController {
     }
 
     @PatchMapping("/ativar")
-    public void ativar(@RequestBody LoginRequestDto loginInfo) {
+    public void ativar(@Valid @RequestBody LoginRequestDto loginInfo) {
         authService.ativarConta(loginInfo);
     }
 }
