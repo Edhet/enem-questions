@@ -2,7 +2,6 @@ package com.ablhds.Enemquestions.prova;
 
 import com.ablhds.Enemquestions.exception.BadRequestException;
 import com.ablhds.Enemquestions.exception.ErrorMessages;
-import com.ablhds.Enemquestions.opcao.Opcao;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +25,8 @@ public class ProvaService {
         prova.getQuestoes().forEach(questao -> {
             questao.setProva(prova);
             questao.getOpcoes().forEach(opcao -> opcao.setQuestao(questao));
-            var labels = questao.getOpcoes().stream().map(Opcao::getLabel).toList();
 
-            if (questao.getLabelOpcaoCorreta() == null)
-                throw new BadRequestException(ErrorMessages.PROVA_QUESTAO_SEM_OPCAO_CORRETA);
-            if (!labels.contains(questao.getLabelOpcaoCorreta()))
+            if (!questao.opcaoCorretaValida())
                 throw new BadRequestException(ErrorMessages.QUESTAO_CORRETA_FORA_DA_LISTA_DE_OPCOES);
             if (questao.possuiOpcoesRepetidas())
                 throw new BadRequestException(ErrorMessages.QUESTAO_PROVA_TEM_LABELS_REPETIDOS);
@@ -41,6 +37,15 @@ public class ProvaService {
 
     public Prova updateProva(Prova prova) {
         var provaAntiga = findById(prova.getId());
+
+        if (prova.possuiQuestoesRepetidas())
+            throw new BadRequestException(ErrorMessages.PROVA_TEM_QUESTOES_REPETIDAS);
+        prova.getQuestoes().forEach(questao -> {
+            if (!questao.opcaoCorretaValida())
+                throw new BadRequestException(ErrorMessages.QUESTAO_CORRETA_FORA_DA_LISTA_DE_OPCOES);
+            if (questao.possuiOpcoesRepetidas())
+                throw new BadRequestException(ErrorMessages.QUESTAO_PROVA_TEM_LABELS_REPETIDOS);
+        });
 
         provaAntiga.setNome(prova.getNome());
         provaAntiga.setAreaProva(prova.getAreaProva());

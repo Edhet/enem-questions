@@ -2,7 +2,6 @@ package com.ablhds.Enemquestions.questao;
 
 import com.ablhds.Enemquestions.opcao.Opcao;
 import com.ablhds.Enemquestions.prova.Prova;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,6 +41,11 @@ public class Questao {
     @NonNull
     @Column(nullable = false)
     private String labelOpcaoCorreta;
+
+    public boolean opcaoCorretaValida() {
+        var labels = this.getOpcoes().stream().map(Opcao::getLabel).toList();
+        return labels.contains(this.getLabelOpcaoCorreta());
+    }
 
     public boolean possuiOpcoesRepetidas() {
         var todosOsLabels = this.opcoes.stream().map(Opcao::getLabel).toList();

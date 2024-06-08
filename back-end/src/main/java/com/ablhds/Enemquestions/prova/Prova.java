@@ -41,7 +41,7 @@ public class Prova {
     @Column(nullable = false)
     private Boolean provaExcluida;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Questao> questoes;
 
     public boolean possuiQuestoesRepetidas() {
