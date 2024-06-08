@@ -1,6 +1,8 @@
 package com.ablhds.Enemquestions.questao;
 
 import com.ablhds.Enemquestions.opcao.OpcaoDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +15,6 @@ public record QuestaoDto(
         @NotBlank String dificuldadeQuestao,
         @NotEmpty List<OpcaoDto> opcoes,
         @NotBlank String enunciado,
-        OpcaoDto opcaoCorreta
+        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) String labelOpcaoCorreta
 ) {
 }

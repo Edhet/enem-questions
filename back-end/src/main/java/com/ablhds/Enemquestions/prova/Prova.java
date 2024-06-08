@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,4 +43,15 @@ public class Prova {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Questao> questoes;
+
+    public boolean possuiQuestoesRepetidas() {
+        var todosOsNumeroQuestao = this.questoes.stream().map(Questao::getNumeroQuestao).toList();
+        var numeros = new ArrayList<>();
+        for (var numQuestao : todosOsNumeroQuestao) {
+            if (numeros.contains(numQuestao))
+                return true;
+            numeros.add(numQuestao);
+        }
+        return false;
+    }
 }

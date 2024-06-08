@@ -2,7 +2,7 @@ package com.ablhds.Enemquestions.prova;
 
 import com.ablhds.Enemquestions.exception.BadRequestException;
 import com.ablhds.Enemquestions.exception.ErrorMessages;
-import com.ablhds.Enemquestions.questao.QuestaoService;
+import com.ablhds.Enemquestions.opcao.Opcao;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,20 +15,24 @@ import java.util.List;
 public class ProvaService {
     private final ProvaRepository provaRepository;
 
-    private final QuestaoService questaoService;
-
     public Prova addProva(Prova prova) {
         if (prova.getId() != null)
             throw new BadRequestException(ErrorMessages.PROVA_COM_ID_ARBITRARIO);
+
+        if (prova.possuiQuestoesRepetidas())
+            throw new BadRequestException(ErrorMessages.PROVA_TEM_QUESTOES_REPETIDAS);
 
         prova.setProvaExcluida(false);
         prova.getQuestoes().forEach(questao -> {
             questao.setProva(prova);
             questao.getOpcoes().forEach(opcao -> opcao.setQuestao(questao));
+            var labels = questao.getOpcoes().stream().map(Opcao::getLabel).toList();
 
-            if (questao.getOpcaoCorreta() == null)
+            if (questao.getLabelOpcaoCorreta() == null)
                 throw new BadRequestException(ErrorMessages.PROVA_QUESTAO_SEM_OPCAO_CORRETA);
-            if (questaoService.questaoPossuiOpcoesComLabelsRepetidos(questao))
+            if (!labels.contains(questao.getLabelOpcaoCorreta()))
+                throw new BadRequestException(ErrorMessages.QUESTAO_CORRETA_FORA_DA_LISTA_DE_OPCOES);
+            if (questao.possuiOpcoesRepetidas())
                 throw new BadRequestException(ErrorMessages.QUESTAO_PROVA_TEM_LABELS_REPETIDOS);
         });
 
@@ -36,7 +40,7 @@ public class ProvaService {
     }
 
     public Prova updateProva(Prova prova) {
-        Prova provaAntiga = findById(prova.getId());
+        var provaAntiga = findById(prova.getId());
 
         provaAntiga.setNome(prova.getNome());
         provaAntiga.setAreaProva(prova.getAreaProva());
@@ -49,7 +53,7 @@ public class ProvaService {
     }
 
     public void excluirProva(Long id) {
-        Prova prova = findById(id);
+        var prova = findById(id);
         prova.setProvaExcluida(true);
         provaRepository.save(prova);
     }

@@ -20,7 +20,7 @@ public final class QuestaoMapper {
                 questao.getDificuldadeQuestao().toString(),
                 opcaoDtos,
                 questao.getEnunciado(),
-                null
+                questao.getLabelOpcaoCorreta()
         );
     }
 
@@ -32,11 +32,6 @@ public final class QuestaoMapper {
                 .map(OpcaoMapper::dtoToEntity)
                 .collect(Collectors.toList());
 
-        Opcao opcaoCorreta = opcoes.stream()
-                .filter(opcao -> opcao.getLabel().equals(questaoDto.opcaoCorreta().label()))
-                .toList()
-                .getFirst();
-
         return new Questao(
                 questaoDto.id(),
                 dificuldadeQuestao,
@@ -44,7 +39,7 @@ public final class QuestaoMapper {
                 null,
                 questaoDto.enunciado(),
                 opcoes,
-                opcaoCorreta
+                questaoDto.labelOpcaoCorreta()
         );
     }
 }
