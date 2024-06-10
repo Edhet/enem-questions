@@ -3,6 +3,8 @@ package com.ablhds.Enemquestions.usuario;
 import com.ablhds.Enemquestions.exception.BadRequestException;
 import com.ablhds.Enemquestions.exception.ErrorMessages;
 import com.ablhds.Enemquestions.exception.NotFoundException;
+import com.ablhds.Enemquestions.permissao.Permissao;
+import com.ablhds.Enemquestions.permissao.PermissaoService;
 import com.ablhds.Enemquestions.permissao.TipoAcesso;
 import com.ablhds.Enemquestions.security.CadastroRequestDto;
 import com.ablhds.Enemquestions.security.JwtService;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -23,15 +26,18 @@ public class UsuarioService implements UserDetailsService {
 
     private final JwtService jwtService;
 
+    private final PermissaoService permissaoService;
+
     public Usuario addUsuario(CadastroRequestDto cadastroRequestDtoCriptografado, TipoAcesso tipoAcessoUsuario) {
-        // TODO: Dar permissões padrão de usuário final
+        List<Permissao> permissoesUsarioFinal = permissaoService.findPermissoesPorTipoAcesso(TipoAcesso.USUARIO_FINAL);
+
         Usuario novoUsuario = new Usuario(
                 null,
                 cadastroRequestDtoCriptografado.nome(),
                 cadastroRequestDtoCriptografado.email(),
                 cadastroRequestDtoCriptografado.senha(),
                 tipoAcessoUsuario,
-                new ArrayList<>(),
+                permissoesUsarioFinal,
                 new ArrayList<>(),
                 true
         );

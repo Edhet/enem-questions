@@ -20,7 +20,7 @@ public class Permissao implements GrantedAuthority {
     private Long id;
 
     @NonNull
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String acao;
 
     @NonNull

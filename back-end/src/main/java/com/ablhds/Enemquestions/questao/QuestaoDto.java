@@ -1,7 +1,6 @@
 package com.ablhds.Enemquestions.questao;
 
 import com.ablhds.Enemquestions.opcao.OpcaoDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

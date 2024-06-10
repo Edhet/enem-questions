@@ -10,7 +10,7 @@ public interface ErrorMessages {
     String PROVA_NAO_ENCONTRADA = "Prova não encontrada";
     String PROVA_COM_ID_ARBITRARIO = "A prova possui um id arbitrário";
     String QUESTAO_PROVA_TEM_LABELS_REPETIDOS = "A prova possui labels repetidos na opções de uma questão";
-    String PROVA_QUESTAO_SEM_OPCAO_CORRETA = "Uma questão da prova não possui uma opção correta";
     String PROVA_TEM_QUESTOES_REPETIDAS = "A prova possui questões com números repetidos";
     String QUESTAO_CORRETA_FORA_DA_LISTA_DE_OPCOES = "Uma opção correta não está na lista de opções da questão";
+    String NAO_AUTORIZADO = "Acesso não autorizado";
 }

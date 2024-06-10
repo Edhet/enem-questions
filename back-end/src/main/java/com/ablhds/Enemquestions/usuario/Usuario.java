@@ -39,7 +39,7 @@ public class Usuario implements UserDetails {
     private TipoAcesso tipoUsuario;
 
     @NonNull
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Permissao> permissoes;
 
     @OneToMany(fetch = FetchType.LAZY)
@@ -49,7 +49,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return permissoes;
     }
 
     @Override
