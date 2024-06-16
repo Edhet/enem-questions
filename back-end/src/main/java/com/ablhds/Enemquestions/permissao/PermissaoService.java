@@ -15,4 +15,8 @@ public class PermissaoService {
     public List<Permissao> findPermissoesPorTipoAcesso(TipoAcesso tipoAcesso) {
         return permissaoRepository.findAllByTipoPermissao(tipoAcesso);
     }
+
+    public List<Permissao> findAll() {
+        return permissaoRepository.findAll();
+    }
 }

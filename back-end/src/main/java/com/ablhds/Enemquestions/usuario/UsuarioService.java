@@ -80,6 +80,16 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findByEmail(email).orElseThrow(() -> new BadRequestException(ErrorMessages.USUARIO_NAO_ENCONTRADO));
     }
 
+    public boolean existsByEmail(String email) {
+        return usuarioRepository.existsByEmail(email);
+    }
+
+    public void darPermissao(String email, Permissao permissao) {
+        Usuario usuario = findByEmail(email);
+        usuario.getPermissoes().add(permissao);
+        usuarioRepository.save(usuario);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Email não encontrado"));
