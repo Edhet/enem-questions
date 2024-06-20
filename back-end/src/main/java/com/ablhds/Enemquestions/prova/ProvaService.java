@@ -3,6 +3,9 @@ package com.ablhds.Enemquestions.prova;
 import com.ablhds.Enemquestions.exception.BadRequestException;
 import com.ablhds.Enemquestions.exception.ErrorMessages;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +38,7 @@ public class ProvaService {
         return provaRepository.save(prova);
     }
 
+    @CachePut(value = "prova", key = "#prova.id")
     public Prova updateProva(Prova prova) {
         var provaAntiga = findById(prova.getId());
 
@@ -57,16 +61,19 @@ public class ProvaService {
         return provaRepository.save(provaAntiga);
     }
 
+    @CacheEvict(value = "prova", key = "#id")
     public void excluirProva(Long id) {
         var prova = findById(id);
         prova.setProvaExcluida(true);
         provaRepository.save(prova);
     }
 
+    @Cacheable(value = "prova", key = "#id")
     public Prova findById(Long id) {
         return provaRepository.findAllByIdAndProvaExcluidaFalse(id).orElseThrow(() -> new BadRequestException(ErrorMessages.PROVA_NAO_ENCONTRADA));
     }
 
+    @Cacheable(value = "prova")
     public List<Prova> findAll() {
         return provaRepository.findAllByProvaExcluidaFalse();
     }

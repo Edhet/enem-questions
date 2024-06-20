@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Prova {
+public class Prova implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -41,7 +42,7 @@ public class Prova {
     @Column(nullable = false)
     private Boolean provaExcluida;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "prova", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Questao> questoes;
 
     public boolean possuiQuestoesRepetidas() {
