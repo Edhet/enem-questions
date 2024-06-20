@@ -44,4 +44,6 @@ public class AplicacaoProva {
 
     @ManyToOne
     private Prova prova;
+
+    private Boolean excluido;
 }

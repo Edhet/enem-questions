@@ -13,50 +13,49 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 @AllArgsConstructor
 public class AuthService {
     private final AuthenticationManager authenticationManager;
-    private final PasswordEncoder passwordEncoder;
-    private final UsuarioService usuarioService;
+
     private final JwtService jwtService;
 
-    public LoginResponseDto login(LoginRequestDto loginRequestDto) {
+    private final UsuarioService usuarioService;
+
+    private final PasswordEncoder passwordEncoder;
+
+    public LoginResponseDto autenticarSessao(LoginRequestDto loginRequestDto) {
         Usuario usuario;
         try {
             usuario = usuarioService.findByEmail(loginRequestDto.email());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.email(), loginRequestDto.senha()));
         } catch (BadRequestException e) {
-            throw new UnauthorizedException(ErrorMessages.USUARIO_EMAIL_INVALIDO);
+            throw new UnauthorizedException(ErrorMessages.USUARIO_NAO_ENCONTRADO);
         } catch (AuthenticationException e) {
             throw new UnauthorizedException(ErrorMessages.USUARIO_SENHA_INVALIDA);
         }
         return new LoginResponseDto(jwtService.generateToken(usuario));
     }
 
-    public LoginResponseDto cadastrarUsuarioFinal(CadastroRequestDto cadastroRequestDto) {
-        // TODO: Dar permissões padrão de usuário final
-        Usuario novoUsuario;
-        try {
-            novoUsuario = new Usuario(
-                    null,
-                    cadastroRequestDto.nome(),
-                    cadastroRequestDto.email(),
-                    passwordEncoder.encode(cadastroRequestDto.senha()),
-                    TipoAcesso.USUARIO_FINAL,
-                    new ArrayList<>(),
-                    new ArrayList<>()
-            );
-        } catch (IllegalArgumentException e) {
-            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted("senha"));
-        } catch (NullPointerException e) {
-            String campo = e.getMessage().split(" ")[0];
-            throw new BadRequestException(ErrorMessages.CADASTRO_CAMPO_VAZIO.formatted(campo));
-        }
-        usuarioService.addUsuario(novoUsuario);
+    public LoginResponseDto cadastrarUsuario(CadastroRequestDto cadastroRequestDto) {
+        String senhaCriptografada = cadastroRequestDto.senha() == null || cadastroRequestDto.senha().isEmpty()
+                ? null
+                : passwordEncoder.encode(cadastroRequestDto.senha());
+
+        CadastroRequestDto cadastroCriptografado = new CadastroRequestDto(
+                cadastroRequestDto.nome(),
+                cadastroRequestDto.email(),
+                senhaCriptografada
+        );
+        Usuario novoUsuario = usuarioService.addUsuario(cadastroCriptografado, TipoAcesso.USUARIO_FINAL);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(cadastroRequestDto.email(), cadastroRequestDto.senha()));
         return new LoginResponseDto(jwtService.generateToken(novoUsuario));
+    }
+
+    public void ativarConta(LoginRequestDto loginRequestDto) {
+        Usuario usuario = usuarioService.findByEmail(loginRequestDto.email());
+        if (!passwordEncoder.matches(loginRequestDto.senha(), usuario.getSenha()))
+            throw new BadRequestException(ErrorMessages.USUARIO_SENHA_INVALIDA);
+        usuarioService.ativarConta(usuario);
     }
 }

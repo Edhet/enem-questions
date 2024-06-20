@@ -1,7 +1,7 @@
 package com.ablhds.Enemquestions.permissao;
 
 public record PermissaoDto(
-        long id,
+        Long id,
         String acao,
         String tipoPermissao
 ) {

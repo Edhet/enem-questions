@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -26,9 +27,11 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @AllArgsConstructor
 public class WebSecurityConfiguration {
     private final UsuarioService usuarioService;
+
     private final JwtAuthFilter jwtAuthFilter;
 
     @Bean
@@ -46,6 +49,7 @@ public class WebSecurityConfiguration {
         final DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(usuarioService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+
         return daoAuthenticationProvider;
     }
 
@@ -82,6 +86,7 @@ public class WebSecurityConfiguration {
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(request -> {
                     request.requestMatchers(HttpMethod.POST, "v1/auth/**").permitAll();
+                    request.requestMatchers(HttpMethod.PATCH, "v1/usuario/ativar").permitAll();
                     request.anyRequest().authenticated();
                 })
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))

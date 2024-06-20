@@ -4,18 +4,18 @@ import com.ablhds.Enemquestions.questao.Questao;
 import com.ablhds.Enemquestions.questao.QuestaoDto;
 import com.ablhds.Enemquestions.questao.QuestaoMapper;
 
-import java.time.Year;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class ProvaMapper {
     public static ProvaDto entityToDto(Prova prova) {
-        List<QuestaoDto> questaoDtos = prova.getQuestoes().stream().map(QuestaoMapper::entityToDto).collect(Collectors.toList());
+        List<QuestaoDto> questaoDtos = prova.getQuestoes().stream().map(QuestaoMapper::entityToDto).toList();
         return new ProvaDto(
                 prova.getId(),
+                prova.getNome(),
                 prova.getAreaProva().toString(),
                 prova.getDiaDeProva().toString(),
-                prova.getAno().getValue(),
+                prova.getAno(),
                 prova.getCor(),
                 questaoDtos
         );
@@ -25,8 +25,6 @@ public final class ProvaMapper {
         AreaProva areaProva = AreaProva.valueOf(provaDto.areaProva());
         DiaDeProva diaDeProva = DiaDeProva.valueOf(provaDto.diaDeProva());
 
-        Year ano = Year.of((int) provaDto.ano());
-
         List<Questao> questoes = provaDto.questoes()
                 .stream()
                 .map(QuestaoMapper::dtoToEntity)
@@ -34,9 +32,10 @@ public final class ProvaMapper {
 
         return new Prova(
                 provaDto.id(),
+                provaDto.nome(),
                 areaProva,
                 diaDeProva,
-                ano,
+                provaDto.ano(),
                 provaDto.cor(),
                 null,
                 questoes

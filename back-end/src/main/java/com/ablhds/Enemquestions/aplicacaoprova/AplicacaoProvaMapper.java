@@ -49,6 +49,7 @@ public final class AplicacaoProvaMapper {
                 respostas,
                 metricas,
                 null,
+                null,
                 null
         );
     }

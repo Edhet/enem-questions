@@ -1,5 +1,6 @@
 package com.ablhds.Enemquestions.security;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,15 +15,16 @@ public class AuthController {
      * válido, do contrário, não.
      */
     @GetMapping
-    public void runAuthFilter() { }
+    public void runAuthFilter() {
+    }
 
     @PostMapping("/login")
-    public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto) {
-        return authService.login(loginRequestDto);
+    public LoginResponseDto login(@Valid @RequestBody LoginRequestDto loginRequestDto) {
+        return authService.autenticarSessao(loginRequestDto);
     }
 
     @PostMapping("/cadastro")
-    public LoginResponseDto cadastrar(@RequestBody CadastroRequestDto cadastroRequestDto) {
-        return authService.cadastrarUsuarioFinal(cadastroRequestDto);
+    public LoginResponseDto cadastrar(@Valid @RequestBody CadastroRequestDto cadastroRequestDto) {
+        return authService.cadastrarUsuario(cadastroRequestDto);
     }
 }

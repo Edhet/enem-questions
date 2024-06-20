@@ -39,15 +39,17 @@ public class Usuario implements UserDetails {
     private TipoAcesso tipoUsuario;
 
     @NonNull
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Permissao> permissoes;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<AplicacaoProva> aplicacoesProva;
+
+    private Boolean contaAtiva;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return permissoes;
     }
 
     @Override
@@ -77,6 +79,6 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return contaAtiva;
     }
 }

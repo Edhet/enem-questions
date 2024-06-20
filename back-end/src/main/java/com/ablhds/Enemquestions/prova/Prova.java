@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +19,9 @@ public class Prova {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
+    private String nome;
+
     @NonNull
     @Column(nullable = false)
     private AreaProva areaProva;
@@ -29,7 +32,7 @@ public class Prova {
 
     @NonNull
     @Column(nullable = false)
-    private Year ano;
+    private Long ano;
 
     @NonNull
     @Column(nullable = false)
@@ -38,6 +41,17 @@ public class Prova {
     @Column(nullable = false)
     private Boolean provaExcluida;
 
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Questao> questoes;
+
+    public boolean possuiQuestoesRepetidas() {
+        var todosOsNumeroQuestao = this.questoes.stream().map(Questao::getNumeroQuestao).toList();
+        var numeros = new ArrayList<>();
+        for (var numQuestao : todosOsNumeroQuestao) {
+            if (numeros.contains(numQuestao))
+                return true;
+            numeros.add(numQuestao);
+        }
+        return false;
+    }
 }

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,9 +35,26 @@ public class Questao {
     private String enunciado;
 
     @NonNull
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Opcao> opcoes;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Opcao opcaoCorreta;
+    @NonNull
+    @Column(nullable = false)
+    private String labelOpcaoCorreta;
+
+    public boolean opcaoCorretaValida() {
+        var labels = this.getOpcoes().stream().map(Opcao::getLabel).toList();
+        return labels.contains(this.getLabelOpcaoCorreta());
+    }
+
+    public boolean possuiOpcoesRepetidas() {
+        var todosOsLabels = this.opcoes.stream().map(Opcao::getLabel).toList();
+        var labels = new ArrayList<>();
+        for (var label : todosOsLabels) {
+            if (labels.contains(label))
+                return true;
+            labels.add(label);
+        }
+        return false;
+    }
 }
