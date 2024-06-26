@@ -2,15 +2,13 @@ package com.ablhds.Enemquestions.opcao;
 
 import com.ablhds.Enemquestions.questao.Questao;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Opcao implements Serializable {

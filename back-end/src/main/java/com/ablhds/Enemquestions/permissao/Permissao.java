@@ -8,7 +8,8 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
