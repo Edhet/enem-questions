@@ -1,5 +1,6 @@
 package com.ablhds.Enemquestions.usuario;
 
+import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProva;
 import com.ablhds.Enemquestions.exception.BadRequestException;
 import com.ablhds.Enemquestions.exception.ErrorMessages;
 import com.ablhds.Enemquestions.exception.NotFoundException;
@@ -93,5 +94,15 @@ public class UsuarioService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Email não encontrado"));
+    }
+
+    public List<AplicacaoProva> getAplicacoesProva(String authHeader) {
+        final Usuario usuario = findByAuthHeader(authHeader);
+        return usuario.getAplicacoesProva();
+    }
+
+    public Usuario adicionarAplicacaoProva(Usuario usuario, AplicacaoProva aplicacaoProva) {
+        usuario.getAplicacoesProva().add(aplicacaoProva);
+        return usuarioRepository.save(usuario);
     }
 }

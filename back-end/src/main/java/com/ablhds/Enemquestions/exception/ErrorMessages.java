@@ -13,4 +13,5 @@ public interface ErrorMessages {
     String PROVA_TEM_QUESTOES_REPETIDAS = "A prova possui questões com números repetidos";
     String QUESTAO_CORRETA_FORA_DA_LISTA_DE_OPCOES = "Uma opção correta não está na lista de opções da questão";
     String NAO_AUTORIZADO = "Acesso não autorizado";
+    String ID_INVALIDO = "Id fornecido é de formato inválido";
 }

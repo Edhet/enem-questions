@@ -2,7 +2,10 @@ package com.ablhds.Enemquestions.metricas;
 
 import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProva;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Setter
