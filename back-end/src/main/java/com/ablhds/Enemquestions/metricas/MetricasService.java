@@ -10,9 +10,4 @@ import org.springframework.transaction.annotation.Transactional;
 public class MetricasService {
     private final MetricasRepository metricasRepository;
 
-    public Metricas createNewMetricas() {
-        Metricas metricas = new Metricas();
-        return metricasRepository.save(metricas);
-    }
-
 }

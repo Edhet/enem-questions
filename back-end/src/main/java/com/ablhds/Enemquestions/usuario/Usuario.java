@@ -37,7 +37,7 @@ public class Usuario implements UserDetails {
     private TipoAcesso tipoUsuario;
 
     @NonNull
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Permissao> permissoes;
 
     @OneToMany(fetch = FetchType.LAZY)

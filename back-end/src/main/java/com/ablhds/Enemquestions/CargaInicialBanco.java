@@ -37,7 +37,7 @@ public class CargaInicialBanco {
             "admin",
             ADMINISTRADOR,
             new ArrayList<>(),
-            null,
+            new ArrayList<>(),
             true
     );
 

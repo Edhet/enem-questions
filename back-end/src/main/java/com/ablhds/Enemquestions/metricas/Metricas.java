@@ -25,6 +25,6 @@ public class Metricas {
 
     private Float nota;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AplicacaoProva aplicacaoProva;
 }

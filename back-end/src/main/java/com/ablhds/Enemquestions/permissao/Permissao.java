@@ -1,11 +1,11 @@
 package com.ablhds.Enemquestions.permissao;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.ablhds.Enemquestions.usuario.Usuario;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+
+import java.util.List;
 
 @Entity
 @Setter
@@ -19,12 +19,15 @@ public class Permissao implements GrantedAuthority {
     private Long id;
 
     @NonNull
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String acao;
 
     @NonNull
     @Column(nullable = false)
     private TipoAcesso tipoPermissao;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Usuario> usuarios;
 
     @Override
     public String getAuthority() {

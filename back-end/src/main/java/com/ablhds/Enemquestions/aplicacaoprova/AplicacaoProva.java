@@ -30,11 +30,11 @@ public class AplicacaoProva {
 
     private LocalDateTime tempoFimDeAplicacao;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "aplicacaoProva", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resposta> respostas;
 
     @NonNull
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Metricas metricas;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,6 +42,4 @@ public class AplicacaoProva {
 
     @ManyToOne
     private Prova prova;
-
-    private Boolean excluido;
 }
