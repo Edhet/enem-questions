@@ -13,8 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Back-end image
-      run: docker build . --file Dockerfile --tag enem-questions-backend:$(date +%s) .
+      run: docker build . --file Dockerfile --tag enem-questions-backend:$(date +%s)
       working-directory: back-end
     - name: Build the Front-end image
-      run: docker build . --file Dockerfile --tag enem-questions-frontend:$(data +%s) .
+      run: docker build . --file Dockerfile --tag enem-questions-frontend:$(data +%s)
       working-directory: front-end
