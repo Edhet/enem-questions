@@ -1,6 +1,8 @@
 package com.ablhds.Enemquestions.resposta;
 
 import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProva;
+import com.ablhds.Enemquestions.exception.BadRequestException;
+import com.ablhds.Enemquestions.exception.ErrorMessages;
 import com.ablhds.Enemquestions.opcao.Opcao;
 import com.ablhds.Enemquestions.questao.Questao;
 import jakarta.persistence.*;
@@ -27,4 +29,10 @@ public class Resposta {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private AplicacaoProva aplicacaoProva;
+
+    public boolean reaspostaCorreta() {
+        if (!this.getQuestao().getId().equals(this.id))
+            throw new BadRequestException(ErrorMessages.RESPOSTA_QUESTAO_INVALIDA);
+        return this.getOpcaoEscolhida().getLabel().equals(this.getQuestao().getLabelOpcaoCorreta());
+    }
 }

@@ -4,6 +4,7 @@ import com.ablhds.Enemquestions.exception.BadRequestException;
 import com.ablhds.Enemquestions.exception.ErrorMessages;
 import com.ablhds.Enemquestions.exception.UnauthorizedException;
 import com.ablhds.Enemquestions.metricas.Metricas;
+import com.ablhds.Enemquestions.metricas.MetricasService;
 import com.ablhds.Enemquestions.opcao.Opcao;
 import com.ablhds.Enemquestions.opcao.OpcaoDto;
 import com.ablhds.Enemquestions.opcao.OpcaoService;
@@ -34,6 +35,8 @@ public class AplicacaoProvaService {
     private final RespostaService respostaService;
 
     private final OpcaoService opcaoService;
+
+    private final MetricasService metricasService;
 
     private final AplicacaoProvaRepository aplicacaoProvaRepository;
 
@@ -94,8 +97,7 @@ public class AplicacaoProvaService {
         AplicacaoProva aplicacao = findByIdGarantindoPropriedade(authHeader, aplicacaoId);
         aplicacao.setEstadoAplicacaoProva(EstadoAplicacaoProva.FINALIZADA);
         aplicacao.setTempoFimDeAplicacao(LocalDateTime.now());
-        // TODO: CALCULAR METRICAS
-
+        metricasService.calcularMetricasAplicacaoProva(aplicacao);
         aplicacaoProvaRepository.save(aplicacao);
     }
 

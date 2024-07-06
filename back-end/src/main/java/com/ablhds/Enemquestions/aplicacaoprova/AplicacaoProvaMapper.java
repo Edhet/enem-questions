@@ -28,7 +28,6 @@ public final class AplicacaoProvaMapper {
                 respostaDtos,
                 MetricasMapper.entityToDto(aplicacaoProva.getMetricas()),
                 aplicacaoProva.getProva().getId()
-
         );
     }
 
