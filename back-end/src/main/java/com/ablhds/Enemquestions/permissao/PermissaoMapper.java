@@ -14,7 +14,8 @@ public final class PermissaoMapper {
         return new Permissao(
                 permissaoDto.id(),
                 permissaoDto.acao(),
-                tipoPermissao
+                tipoPermissao,
+                null
         );
     }
 }

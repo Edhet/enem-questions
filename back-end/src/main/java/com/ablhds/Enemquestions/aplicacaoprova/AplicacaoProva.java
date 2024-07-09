@@ -5,16 +5,14 @@ import com.ablhds.Enemquestions.prova.Prova;
 import com.ablhds.Enemquestions.resposta.Resposta;
 import com.ablhds.Enemquestions.usuario.Usuario;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AplicacaoProva {
@@ -32,11 +30,11 @@ public class AplicacaoProva {
 
     private LocalDateTime tempoFimDeAplicacao;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "aplicacaoProva", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resposta> respostas;
 
     @NonNull
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Metricas metricas;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -44,6 +42,4 @@ public class AplicacaoProva {
 
     @ManyToOne
     private Prova prova;
-
-    private Boolean excluido;
 }

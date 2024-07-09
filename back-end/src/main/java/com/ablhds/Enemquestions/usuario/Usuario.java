@@ -4,10 +4,7 @@ import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProva;
 import com.ablhds.Enemquestions.permissao.Permissao;
 import com.ablhds.Enemquestions.permissao.TipoAcesso;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,7 +12,8 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario implements UserDetails {
@@ -39,7 +37,7 @@ public class Usuario implements UserDetails {
     private TipoAcesso tipoUsuario;
 
     @NonNull
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Permissao> permissoes;
 
     @OneToMany(fetch = FetchType.LAZY)

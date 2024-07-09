@@ -3,17 +3,15 @@ package com.ablhds.Enemquestions.questao;
 import com.ablhds.Enemquestions.opcao.Opcao;
 import com.ablhds.Enemquestions.prova.Prova;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Questao implements Serializable {

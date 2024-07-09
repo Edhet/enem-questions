@@ -4,7 +4,6 @@ public record MetricasDto(
         Long id,
         Long segundosTotaisDeProva,
         Long segundosMediosPorQuestao,
-        Long quantidadeDeAcertos,
-        Float nota
+        Long quantidadeDeAcertos
 ) {
 }

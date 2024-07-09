@@ -13,4 +13,9 @@ public interface ErrorMessages {
     String PROVA_TEM_QUESTOES_REPETIDAS = "A prova possui questões com números repetidos";
     String QUESTAO_CORRETA_FORA_DA_LISTA_DE_OPCOES = "Uma opção correta não está na lista de opções da questão";
     String NAO_AUTORIZADO = "Acesso não autorizado";
+    String APLICACAO_PROVA_NAO_ENCONTRADA = "Aplicação de Prova não encontrada";
+    String QUESTAO_NAO_ENCONTRADA = "Questão não encontrada";
+    String RESPOSTA_QUESTAO_INVALIDA = "Uma das respostas se refere a uma questão que não está na prova";
+    String RESPOSTA_OPCAO_INVALIDA = "A opção selecionada para uma questão não foi encontrada para a questão da prova";
+    String OPCAO_NAO_ENCONTRADA = "Opção em questão não encontrada";
 }

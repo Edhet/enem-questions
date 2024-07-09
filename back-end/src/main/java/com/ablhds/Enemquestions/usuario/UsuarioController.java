@@ -1,5 +1,7 @@
 package com.ablhds.Enemquestions.usuario;
 
+import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProvaDto;
+import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProvaMapper;
 import com.ablhds.Enemquestions.permissao.PermissaoDto;
 import com.ablhds.Enemquestions.permissao.PermissaoMapper;
 import com.ablhds.Enemquestions.security.AuthService;
@@ -9,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/usuario")
@@ -31,6 +35,13 @@ public class UsuarioController {
     @PatchMapping("/ativar")
     public void ativar(@Valid @RequestBody LoginRequestDto loginInfo) {
         authService.ativarConta(loginInfo);
+    }
+
+    @GetMapping("/aplicacoes")
+    public List<AplicacaoProvaDto> provasDoUsuario(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader) {
+        return usuarioService.getAplicacoesProva(authHeader).stream()
+                .map(AplicacaoProvaMapper::entityToDto)
+                .toList();
     }
 
     @PreAuthorize("hasAuthority('PERMISSAO.EDIT_ALL')")

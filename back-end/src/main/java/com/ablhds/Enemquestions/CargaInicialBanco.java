@@ -25,7 +25,9 @@ public class CargaInicialBanco {
             new Permissao("PERMISSAO.SEE_ALL", ADMINISTRADOR),
             new Permissao("PERMISSAO.EDIT_ALL", ADMINISTRADOR),
             new Permissao("PROVA.SEE_ALL", USUARIO_FINAL),
-            new Permissao("PROVA.EDIT_ALL", ANALISTA)
+            new Permissao("PROVA.EDIT_ALL", ANALISTA),
+            new Permissao("APLICACAO_PROVA.SEE", USUARIO_FINAL),
+            new Permissao("APLICACAO_PROVA.EDIT", USUARIO_FINAL)
     );
 
     private final static Usuario admin = new Usuario(
@@ -35,7 +37,7 @@ public class CargaInicialBanco {
             "admin",
             ADMINISTRADOR,
             new ArrayList<>(),
-            null,
+            new ArrayList<>(),
             true
     );
 

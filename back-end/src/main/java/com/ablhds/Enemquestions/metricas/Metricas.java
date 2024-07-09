@@ -3,11 +3,13 @@ package com.ablhds.Enemquestions.metricas;
 import com.ablhds.Enemquestions.aplicacaoprova.AplicacaoProva;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Metricas {
@@ -21,8 +23,6 @@ public class Metricas {
 
     private Long quantidadeDeAcertos;
 
-    private Float nota;
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AplicacaoProva aplicacaoProva;
 }

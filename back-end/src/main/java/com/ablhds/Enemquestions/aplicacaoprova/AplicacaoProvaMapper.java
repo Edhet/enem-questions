@@ -16,15 +16,18 @@ public final class AplicacaoProvaMapper {
                 .map(RespostaMapper::entityToDto)
                 .collect(Collectors.toList());
 
+        String tempoFim = aplicacaoProva.getTempoFimDeAplicacao() == null
+                ? null
+                : aplicacaoProva.getTempoFimDeAplicacao().toString();
+
         return new AplicacaoProvaDto(
                 aplicacaoProva.getId(),
                 aplicacaoProva.getEstadoAplicacaoProva().toString(),
                 aplicacaoProva.getTempoInicioDeAplicacao().toString(),
-                aplicacaoProva.getTempoFimDeAplicacao().toString(),
+                tempoFim,
                 respostaDtos,
                 MetricasMapper.entityToDto(aplicacaoProva.getMetricas()),
                 aplicacaoProva.getProva().getId()
-
         );
     }
 
@@ -48,7 +51,6 @@ public final class AplicacaoProvaMapper {
                 tempoFinal,
                 respostas,
                 metricas,
-                null,
                 null,
                 null
         );
