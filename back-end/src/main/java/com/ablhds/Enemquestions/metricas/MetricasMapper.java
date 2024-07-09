@@ -6,8 +6,7 @@ public final class MetricasMapper {
                 metricas.getId(),
                 metricas.getSegundosTotaisDeProva(),
                 metricas.getSegundosMediosPorQuestao(),
-                metricas.getQuantidadeDeAcertos(),
-                metricas.getNota()
+                metricas.getQuantidadeDeAcertos()
         );
     }
 
@@ -17,7 +16,6 @@ public final class MetricasMapper {
                 metricasDto.segundosTotaisDeProva(),
                 metricasDto.segundosMediosPorQuestao(),
                 metricasDto.quantidadeDeAcertos(),
-                metricasDto.nota(),
                 null
         );
     }
