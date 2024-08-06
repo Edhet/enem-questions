@@ -85,9 +85,7 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(request -> {
-                    request.requestMatchers(HttpMethod.POST, "v1/auth/**").permitAll();
-                    request.requestMatchers(HttpMethod.PATCH, "v1/usuario/ativar").permitAll();
-                    request.anyRequest().authenticated();
+                    request.anyRequest().permitAll();
                 })
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
