@@ -23,8 +23,16 @@
 
 **Testes de carga (SLA):** 
 - Latência (100 VUs; 500 VUs; 1000 VUs): 16.35s; 22s ; 28.36s
+
+![](images_resultado/getProva_latencia.png)
+
 - Vazão (100 VUs; 500 VUs; 1000 VUs): 5.245761/s; 13.887726/s; 23.49267/s
+
+![](images_resultado/getProva_vazao.png)
+
 - Concorrência (100 VUs; 500 VUs; 1000 VUs): 90; 138; 190
+
+![](images_resultado/getProva_concorrencia.png)
 
 **Potenciais gargalos do sistema:** Não ter cache de informação do usuário para realizar autenticação.
 
