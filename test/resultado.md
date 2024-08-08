@@ -5,7 +5,7 @@
 
 **Arquivos envolvidos:** (lista de Arquivos c/ os links contidos no repositório que estejam envolvidos na implementação do serviço 1)
 
-**Arquivos com o código fonte de medição do SLA:** [](script_k6\scenarios\Get-Prova.js)
+**Arquivos com o código fonte de medição do SLA:** [script_k6\scenarios\Get-Prova.js](script_k6\scenarios\Get-Prova.js)
 
 **Data da medição:** 07/08/2024
 
