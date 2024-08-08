@@ -9,7 +9,16 @@
 
 **Data da medição:** 07/08/2024
 
-**Descrição das configurações:** (máquinas/containers utilizadas para o sistema funcionar, ...)
+**Descrição das configurações:**
+- Especificação do Computador:
+    - Placa-Mãe: RB Jimny_RBH
+    - CPU: Ryzen 5 7535HS 
+    - GPU: NVIDIA RTX3050
+    - Memória RAM: 1x8 GB 5600MHz
+- Especificação dos Conteiners:
+    - A
+    - B
+    - C
 
 **Testes de carga (SLA):** 
 - Latência (100 VUs; 500 VUs; 1000 VUs): 16.35s; 22s ; 28.36s
@@ -23,7 +32,7 @@
 
 **Arquivos envolvidos:** (lista de Arquivos c/ os links contidos no repositório que estejam envolvidos na implementação do serviço 2)
 
-**Arquivos com o código fonte de medição do SLA:** enem-questions\test\script_k6\scenarios\Post-Prova.js
+**Arquivos com o código fonte de medição do SLA:** [script_k6\scenarios\Post-Prova.js](script_k6\scenarios\Post-Prova.js)
 
 **Data da medição:** 07/08/2024
 
@@ -49,7 +58,7 @@
 
 **Arquivos envolvidos:** (lista de Arquivos c/ os links contidos no repositório que estejam envolvidos na implementação do serviço 3)
 
-**Arquivos com o código fonte de medição do SLA:** enem-questions\test\script_k6\scenarios\Post-Login.js
+**Arquivos com o código fonte de medição do SLA:** [script_k6\scenarios\Post-Login.js](script_k6\scenarios\Post-Login.js)
 
 **Data da medição:** 07/08/2024
 
@@ -67,7 +76,7 @@
 
 **Arquivos envolvidos:** (lista de Arquivos c/ os links contidos no repositório que estejam envolvidos na implementação do serviço 4)
 
-**Arquivos com o código fonte de medição do SLA:** enem-questions\test\script_k6\scenarios\Post-Cadastro.js
+**Arquivos com o código fonte de medição do SLA:** [script_k6\scenarios\Post-Cadastro.js](script_k6\scenarios\Post-Cadastro.js)
 
 **Data da medição:** 07/08/2024
 
