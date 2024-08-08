@@ -5,7 +5,7 @@
 
 **Arquivos envolvidos:** (lista de Arquivos c/ os links contidos no repositório que estejam envolvidos na implementação do serviço 1)
 
-**Arquivos com o código fonte de medição do SLA:** [script_k6\scenarios\Get-Prova.js](script_k6\scenarios\Get-Prova.js)
+**Arquivos com o código fonte de medição do SLA:** [Get-Prova.js](https://github.com/Edhet/enem-questions/blob/feature/teste_de_carga/test/script_k6/scenarios/Get-Prova.js)
 
 **Data da medição:** 07/08/2024
 
@@ -16,9 +16,10 @@
     - GPU: NVIDIA RTX3050
     - Memória RAM: 1x8 GB 5600MHz
 - Especificação dos Conteiners:
-    - A
-    - B
-    - C
+    - Nginx:  "image: 'nginx:1.25.5'"
+    - Postgres: "image: 'postgres:alpine3.19'"
+    - Redis: "image: 'redis:alpine3.19'"
+    - Backend: "dockerfile: ./Dockerfile"
 
 **Testes de carga (SLA):** 
 - Latência (100 VUs; 500 VUs; 1000 VUs): 16.35s; 22s ; 28.36s
@@ -32,11 +33,21 @@
 
 **Arquivos envolvidos:** (lista de Arquivos c/ os links contidos no repositório que estejam envolvidos na implementação do serviço 2)
 
-**Arquivos com o código fonte de medição do SLA:** [script_k6\scenarios\Post-Prova.js](script_k6\scenarios\Post-Prova.js)
+**Arquivos com o código fonte de medição do SLA:** [Post-Prova.js](https://github.com/Edhet/enem-questions/blob/feature/teste_de_carga/test/script_k6/scenarios/Post-Prova.js)
 
 **Data da medição:** 07/08/2024
 
-**Descrição das configurações:** (máquinas/containers utilizadas para o sistema funcionar, ...)
+**Descrição das configurações:**
+- Especificação do Computador:
+    - Placa-Mãe: RB Jimny_RBH
+    - CPU: Ryzen 5 7535HS 
+    - GPU: NVIDIA RTX3050
+    - Memória RAM: 1x8 GB 5600MHz
+- Especificação dos Conteiners:
+    - Nginx:  "image: 'nginx:1.25.5'"
+    - Postgres: "image: 'postgres:alpine3.19'"
+    - Redis: "image: 'redis:alpine3.19'"
+    - Backend: "dockerfile: ./Dockerfile"
 
 **Testes de carga (SLA):** 
 - Latência (100 VUs; 500 VUs; 1000 VUs): 0.23637s; 1.45s ; 3.42s
@@ -58,16 +69,34 @@
 
 **Arquivos envolvidos:** (lista de Arquivos c/ os links contidos no repositório que estejam envolvidos na implementação do serviço 3)
 
-**Arquivos com o código fonte de medição do SLA:** [script_k6\scenarios\Post-Login.js](script_k6\scenarios\Post-Login.js)
+**Arquivos com o código fonte de medição do SLA:** [Post-Login.js](https://github.com/Edhet/enem-questions/blob/feature/teste_de_carga/test/script_k6/scenarios/Post-Login.js)
 
 **Data da medição:** 07/08/2024
 
-**Descrição das configurações:** (máquinas/containers utilizadas para o sistema funcionar, ...)
+**Descrição das configurações:**
+- Especificação do Computador:
+    - Placa-Mãe: RB Jimny_RBH
+    - CPU: Ryzen 5 7535HS 
+    - GPU: NVIDIA RTX3050
+    - Memória RAM: 1x8 GB 5600MHz
+- Especificação dos Conteiners:
+    - Nginx:  "image: 'nginx:1.25.5'"
+    - Postgres: "image: 'postgres:alpine3.19'"
+    - Redis: "image: 'redis:alpine3.19'"
+    - Backend: "dockerfile: ./Dockerfile"
 
 **Testes de carga (SLA):** 
 - Latência (100 VUs; 500 VUs; 1000 VUs): 0.09855s; 2.06s ; 5.48s
+
+![](images_resultado/postLogin_latencia.png)
+
 - Vazão (100 VUs; 500 VUs; 1000 VUs): 47.075428/s; 120.375143/s; 127.570201/s
+
+![](images_resultado/postLogin_vazao.png)
+
 - Concorrência (100 VUs; 500 VUs; 1000 VUs): 56; 124; 120
+
+![](images_resultado/postLogin_concorrencia.png)
 
 **Potenciais gargalos do sistema:** Não ter cache de informação do usuário para realizar autenticação.
 
@@ -76,15 +105,33 @@
 
 **Arquivos envolvidos:** (lista de Arquivos c/ os links contidos no repositório que estejam envolvidos na implementação do serviço 4)
 
-**Arquivos com o código fonte de medição do SLA:** [script_k6\scenarios\Post-Cadastro.js](script_k6\scenarios\Post-Cadastro.js)
+**Arquivos com o código fonte de medição do SLA:** [Post-Cadastro.js](https://github.com/Edhet/enem-questions/blob/feature/teste_de_carga/test/script_k6/scenarios/Post-Cadastro.js)
 
 **Data da medição:** 07/08/2024
 
-**Descrição das configurações:** (máquinas/containers utilizadas para o sistema funcionar, ...)
+**Descrição das configurações:**
+- Especificação do Computador:
+    - Placa-Mãe: RB Jimny_RBH
+    - CPU: Ryzen 5 7535HS 
+    - GPU: NVIDIA RTX3050
+    - Memória RAM: 1x8 GB 5600MHz
+- Especificação dos Conteiners:
+    - Nginx:  "image: 'nginx:1.25.5'"
+    - Postgres: "image: 'postgres:alpine3.19'"
+    - Redis: "image: 'redis:alpine3.19'"
+    - Backend: "dockerfile: ./Dockerfile"
 
 **Testes de carga (SLA):** 
 - Latência (100 VUs; 500 VUs; 1000 VUs): 0.22505s; 4.63s ; 8.47s
+
+![](images_resultado/postCadastro_latencia.png)
+
 - Vazão (100 VUs; 500 VUs; 1000 VUs): 80.016331/s; 84.596332/s; 94.768434/s
+
+![](images_resultado/postCadastro_vazao.png)
+
 - Concorrência (100 VUs; 500 VUs; 1000 VUs): 15; 105; 33
+
+![](images_resultado/postCadastro_concorrencia.png)
 
 **Potenciais gargalos do sistema:** Não ter cache de informação do usuário para realizar autenticação.
