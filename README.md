@@ -8,7 +8,7 @@ Sistema de questões do ENEM com intuito de auxiliar os estudantes que estão se
 
 ### Stack
 
-Front-end: Vue
+Front-end: Angular
 
 Back-end: Spring Boot
 
