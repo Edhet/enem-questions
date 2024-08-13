@@ -1,42 +1,5 @@
-.card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 20px;
-  }
-
-.card-img-top {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin-top: 15px;
-}
-  
-.card-title {
-    font-size: 1.5rem;
-    margin-top: 10px;
-}
-
-.btn-edit {
-background-color: #56bcdd; /* Azul pastel */
-color: white;
-border: none;
-}
-
-.btn-delete {
-background-color: #cc4242; /* Vermelho pastel */
-color: white;
-border: none;
-}
-
 .btn-edit:hover, .btn-delete:hover {
 opacity: 0.9;
-}
-
-.ml-1 {
-margin-left: 3px;
 }
 
 
