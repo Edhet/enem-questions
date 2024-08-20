@@ -19,7 +19,7 @@
     - Redis: "image: 'redis:alpine3.19'"
     - Backend: "dockerfile: ./Dockerfile"
 
-**\_MEDIÇÃO 1\_:**
+**MEDIÇÃO 1:**
 
 **Data da medição:** 07/08/2024
 
@@ -38,7 +38,7 @@
 
 **Potenciais gargalos do sistema:** Não ter cache de informação do usuário para realizar autenticação.
 
-**\_MEDIÇÃO 2\_:**
+**MEDIÇÃO 2:**
 
 **Data da medição:** 20/08/2024
 
@@ -49,11 +49,11 @@
 
 - Concorrência (100 VUs; 500 VUs; 1000 VUs): 100; 192; 561
 
-- Teste 1 
+- Medição 1 
 
 ![](images_resultado/getProva_antigo.png)
 
-- Teste 2
+- Medição 2
 
 ![](images_resultado/getProva_novo.png)
 
@@ -82,7 +82,7 @@
     - Redis: "image: 'redis:alpine3.19'"
     - Backend: "dockerfile: ./Dockerfile"
 
-**\_MEDIÇÃO 1\_:**
+**MEDIÇÃO 1:**
 
 **Testes de carga (SLA):** 
 - Latência (100 VUs; 500 VUs; 1000 VUs): 325,51s; 12,64s ; 25,85s
@@ -91,7 +91,7 @@
 
 - Concorrência (100 VUs; 500 VUs; 1000 VUs): 1; 59; 859
 
-- Teste 1
+- Medição 1
 
 ![](images_resultado/postGetProva_grafico.png)
 
