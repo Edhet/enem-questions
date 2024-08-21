@@ -60,6 +60,7 @@
 **Melhorias/Otimizações:** 
 - A taxa de requisições sendo processadas por segundo aumentou drasticamente.
 - A quantidade de usuários virtuais ativos em cada momento teve um aumento considerável.
+- Alteramos o gráfico para facilitar a visualização dos dados obtidos.
 
 ## Post Get Prova
 **Tipo de operações:** inserção e leitura
