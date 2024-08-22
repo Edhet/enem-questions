@@ -1,0 +1,20 @@
+.metricas-header {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #c2c2c3;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.metricas-header h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.metricas-header p {
+    margin: 10px 0 0;
+    color: rgb(67, 67, 67);
+}
