@@ -10,6 +10,7 @@ export const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'create-exam', component: CreateExamComponent },
+    { path: 'question-view', component: CreateExamComponent },
     
 ];
 
