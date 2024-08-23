@@ -1,0 +1,25 @@
+<div>
+    <h2>Iniciar Prova do ENEM</h2>
+    <label>
+      Ano:
+      <input type="number" ngModel="examOptions.ano">
+    </label>
+    <label>
+      Dia:
+      <select (ngModel)="examOptions.diaDeProva">
+        <option ngValue="DiaDeProva.PRIMEIRO">1º Dia</option>
+        <option ngValue="DiaDeProva.SEGUNDO">2º Dia</option>
+      </select>
+    </label>
+    <label>
+      Área de Conhecimento:
+      <select (ngModel)="examOptions.areaProva">
+        <option ngValue="AreaProva.EXATAS">Exatas</option>
+        <option ngValue="AreaProva.NATUREZAS">Naturezas</option>
+        <option ngValue="AreaProva.HUMANAS">Humanas</option>
+        <option ngValue="AreaProva.LINGUAGENS">Linguagens</option>
+      </select>
+    </label>
+    <button (click)="startExam()">Iniciar Prova</button>
+  </div>
+  
