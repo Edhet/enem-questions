@@ -1,34 +1,68 @@
 <div class="container mt-4">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card d-flex p-2 align-items-center justify-content-center nav flex-column">
-          <img src="https://i.pinimg.com/564x/69/76/39/6976397d27eed9f81a8ee9f806ccf492.jpg" class="card-img-top rounded-circle border rounded" 
-          style="width: 150px; height: 150px; margin-top: 15px;" alt="Profile Picture">
-
-          <div class="card-body text-center">
-            <h5 class="card-title mt-2 fs-2">Nome do Usuário</h5>
-            <p class="card-text">email&#64;exemplo.com</p>
-            <p class="card-text"><small class="text-muted">Membro desde: agosto de 2024</small></p>
+    <!-- Caixa Principal -->
+    <div class="main-card card p-4">
+      <div class="row">
+        <!-- Caixa da Esquerda -->
+        <div class="col-md-6 d-flex align-items-stretch">
+          <div class="left-card card p-3 mb-4 flex-fill">
+            <div class="text-center mb-3">
+              <img [src]="profileImgUrl" 
+                   class="profile-img" 
+                   alt="Foto de Perfil">
+              <!-- Botão e Contêiner para Seleção de Arquivo -->
+              <div class="file-upload-container" *ngIf="isEditing">
+                <label class="file-upload-btn">
+                  Escolher nova foto
+                  <input type="file" (change)="onFileChange($event)">
+                </label>
+                <span *ngIf="selectedFileName">{{ selectedFileName }}</span>
+              </div>
+            </div>
+            <h5 class="card-title">Informações do Usuário</h5>
+            <p><strong>Nome:</strong> {{ user.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Membro desde:</strong> {{ user.membershipDate | date: 'dd MM yyyy' }}</p>
+    
+            <h6 class="mt-4"><strong>Histórico do Usuário</strong></h6>
+            <button class="btn btn-info" [routerLink]="['/history']" routerLinkActive="active">
+              Acessar
+            </button>
+          </div>
+        </div>
+    
+        <!-- Caixa da Direita -->
+        <div class="col-md-6 d-flex align-items-stretch">
+          <div class="right-card card p-3 mb-4 flex-fill">
+            <h5 class="card-title">Informações Pessoais</h5>
+            <form [formGroup]="personalInfoForm">
+              <div class="mb-3">
+                <label for="nomeCompleto" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="nomeCompleto" formControlName="fullName" [attr.disabled]="!isEditing ? true : null">
+              </div>
+              <div class="mb-3">
+                <label for="endereco" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="endereco" formControlName="address" [attr.disabled]="!isEditing ? true : null">
+              </div>
+              <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="text" class="form-control" id="telefone" formControlName="phone" [attr.disabled]="!isEditing ? true : null">
+              </div>
+              <div class="mb-3">
+                <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+                <input type="date" class="form-control" id="dataNascimento" formControlName="birthDate" [attr.disabled]="!isEditing ? true : null">
+              </div>
+            </form>
           </div>
         </div>
       </div>
-      <div class="col-md-8">
-        <h3>Informações Pessoais</h3>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Nome Completo:</strong> João da Silva</li>
-          <li class="list-group-item"><strong>Endereço:</strong> Rua Exemplo, 123, Cidade, Estado</li>
-          <li class="list-group-item"><strong>Telefone:</strong> (11) 99999-9999</li>
-          <li class="list-group-item"><strong>Data de Nascimento:</strong> 10/10/1990</li>
-        </ul>
-        
-        <h3 class="mt-4">Sobre Mim</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
-  
-        <h3 class="mt-4">Configurações</h3>
-
-        <button class="btn btn-primary text-white" data-toggle="button" aria-pressed="false" autocomplete="off" type="button">Editar Perfil</button>
-        <button class="btn btn-danger text-white ms-1" data-toggle="button" aria-pressed="false" autocomplete="off" type="button">Excluir Conta</button>      
+    
+      <!-- Botões de Configuração -->
+      <div class="config-buttons text-end mt-3">
+        <button *ngIf="!isEditing" class="btn btn-primary" (click)="editProfile()">Editar Perfil</button>
+        <div *ngIf="isEditing" class="d-inline-block ms-2">
+          <button class="btn btn-success me-2" (click)="saveChanges()">Salvar</button>
+          <button class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button>
+        </div>
       </div>
     </div>
-  </div>
-  
+  </div>  
