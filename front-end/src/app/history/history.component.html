@@ -1,0 +1,23 @@
+<div class="historico-header">
+    <h2>Histórico de Provas</h2>
+    <p>Confira o seu histórico de provas realizadas e suas respectivas informações.</p>
+</div>
+
+<div class="historico-container">
+    <div *ngFor="let prova of paginatedProvas" class="prova-item">
+    <div class="prova-info">
+        <p><strong>Data:</strong> {{ prova.dataRealizacao | date: 'dd/MM/yyyy' }}</p>
+        <p><strong>Prova:</strong> {{ prova.informacoes.dia }} • {{ prova.informacoes.ano }}</p>
+        <p><strong>Cor: </strong> {{ prova.cor }} </p>
+    </div>
+    <div class="prova-resultados">
+        <p><strong>Acertos:</strong> {{ prova.acertos }}</p>
+        <p><strong>Erros:</strong> {{ prova.erros }}</p>
+    </div>
+    </div>
+    
+    <div class="pagination-controls">
+        <button (click)="previousPage()" [disabled]="!showPreviousButton">Anterior</button>
+        <button (click)="nextPage()" [disabled]="!showNextButton">Próximo</button>
+    </div>
+</div>

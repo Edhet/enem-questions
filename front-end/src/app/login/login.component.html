@@ -1,0 +1,26 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+    </div>
+
+    <button type="submit">Entrar</button>
+
+    <p class="signup-prompt">
+      Não tem conta? <a routerLink="/register" routerLinkActive="active">Criar conta</a>
+    </p>
+  </form>
+
+  <div class="footer-info">
+    <p>
+      Este site está sujeito à <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> e <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Termos de Uso</a> do Google.
+    </p>
+  </div>
+</div>
