@@ -23,8 +23,10 @@
             <p><strong>Email:</strong> {{ user.email }}</p>
             <p><strong>Membro desde:</strong> {{ user.membershipDate | date: 'dd MM yyyy' }}</p>
     
-            <h6 class="mt-4">Sobre Mim</h6>
-            <p>{{ user.about }}</p>
+            <h6 class="mt-4"><strong>Histórico do Usuário</strong></h6>
+            <button class="btn btn-info" [routerLink]="['/history']" routerLinkActive="active">
+              Acessar
+            </button>
           </div>
         </div>
     

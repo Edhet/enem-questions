@@ -48,3 +48,14 @@
   font-size: 14px;
   color: #555;
 }
+
+.btn-info {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn-info:hover {
+  background-color: #005aba;
+  border-color: #005aba;
+}
