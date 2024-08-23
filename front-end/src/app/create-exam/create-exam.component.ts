@@ -20,19 +20,19 @@ export class CreateExamComponent {
     areaProva: AreaProva.EXATAS
   };
 
-  constructor(
-    private asyncHttpService: AsyncHttpServiceService,
-    private router: Router
-  ) {}
+  // constructor(
+  //   private asyncHttpService: AsyncHttpServiceService,
+  //   private router: Router
+  // ) {}
 
-  async startExam() {
-    const exam = await this.asyncHttpService.postRequest<Prova>(
-      '/api/start-exam',
-      this.examOptions
-    );
+  // async startExam() {
+  //   const exam = await this.asyncHttpService.postRequest<Prova>(
+  //     '/api/start-exam',
+  //     this.examOptions
+  //   );
 
-    // Armazenar a prova iniciada no localStorage ou serviço de estado
-    localStorage.setItem('currentExam', JSON.stringify(exam));
-    this.router.navigate(['/take-exam']);
-  }
+  //   // Armazenar a prova iniciada no localStorage ou serviço de estado
+  //   localStorage.setItem('currentExam', JSON.stringify(exam));
+  //   this.router.navigate(['/take-exam']);
+  // }
 }
