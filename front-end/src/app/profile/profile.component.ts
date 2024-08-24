@@ -73,4 +73,15 @@ export class ProfileComponent implements OnInit {
       this.selectedFileName = file.name;
     }
   }
+
+  confirmDeleteAccount(): void {
+    const confirmation = confirm('Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita.');
+    if (confirmation) {
+      this.deleteAccount();
+    }
+  }
+
+  private deleteAccount(): void {
+    alert('Conta excluída com sucesso!');
+  }
 }

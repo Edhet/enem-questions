@@ -1,25 +1,47 @@
-nav {
-    background-color: #333;
-    padding: 1em;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  li {
-    margin-right: 1em;
-  }
-  
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+.navbar {
+  background-color: #313439;
+  padding: 1em;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-logo {
+  height: 50px; /* Ajuste conforme necessário */
+  transition: transform 0.2s ease; /* Transição suave para o efeito */
+}
+
+.navbar-logo:active {
+  transform: scale(1.2); /* Aumenta a logo ao clicar */
+}
+
+.navbar-nav {
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-item {
+  margin-right: 1em;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.icon-img {
+  height: 50px;  /* Ajuste conforme necessário */
+  width: auto;   /* Mantém a proporção da imagem */
+  transition: transform 0.2s ease; /* Transição suave para o efeito */
+}
+
+.icon-img:active {
+  transform: scale(1.2); /* Efeito de aumento ao clicar */
+}

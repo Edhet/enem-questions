@@ -59,3 +59,18 @@
   background-color: #005aba;
   border-color: #005aba;
 }
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.ms-3 {
+  margin-left: 1rem;
+}
