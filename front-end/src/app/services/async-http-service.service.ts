@@ -5,7 +5,7 @@ import { firstValueFrom } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AsyncHttpServiceService {
+export class AsyncHttpService {
 
   constructor(private httpClient: HttpClient) { }
 
