@@ -1,8 +1,10 @@
 import type { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 export const authorizationInterceptor: HttpInterceptorFn = (req, next) => {
+  console.log("INTERCEPTED");
+  
   const authToken = inject(AuthService).getAuthToken();
   const newReq = req.clone({
     headers: req.headers.append("Authorization", `Bearer ${authToken}`)

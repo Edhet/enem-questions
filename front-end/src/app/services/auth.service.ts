@@ -37,13 +37,13 @@ export class AuthService {
 
   public login(loginRequest: LoginRequest) {
     return this.httpClient.postRequest<LoginResponse>(this.LOGIN_URL, loginRequest)
-    .then(r => this.setAuthToken(r.token))
-    .catch(r => r as Error);
+      .then(r => this.setAuthToken(r.token))
+      .catch(r => r as Error);
   }
 
-  public cadastro(cadastroRequest: CadastroRequest) {
+  public cadastrar(cadastroRequest: CadastroRequest) {
     return this.httpClient.postRequest<LoginResponse>(this.CADASTRO_URL, cadastroRequest)
-    .then(r => this.setAuthToken(r.token))
-    .catch(r => r as Error);
+      .then(r => this.setAuthToken(r.token))
+      .catch(r => r as Error);
   }
 }

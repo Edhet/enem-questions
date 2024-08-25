@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AsyncHttpServiceService } from '../services/async-http-service.service';
-import { AreaProva } from '../models/area-prova.model';
-import { DiaDeProva } from '../models/dia-de-prova.model';
-import { Prova } from '../models/prova.model';
-import { FormsModule } from '@angular/forms'; // Importando FormsModule
+import { DiaDeProva } from '../../models/dia-de-prova.model';
+import { AreaProva } from '../../models/area-prova.model';
 
 @Component({
   selector: 'app-create-exam',
