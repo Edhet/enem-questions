@@ -1,26 +1,54 @@
 <div class="container mt-4">
-  <div class="main-card card p-4 ">
-    <div class="row text-center mt-2" >
+  <div class="main-card card p-4 custom-card">
+    <!-- Caixa de instruções -->
+    <div class="info-box mb-4">
+      <h2 class="text-center mb-4">Criar Prova</h2>
+      <p class="text-center">
+        Preencha as informações abaixo para criar a sua prova ENEM.
+      </p>
+    </div>
+    
+    <!-- Caixa de seleção e botão -->
+    <div class="form-box">
+      <div class="row text-center mb-4 align-items-center">
+        <div class="col-md text-center">
+          <div class="form-group">
+            <div class="form-label">
+              <span><strong>DIA</strong></span>
+            </div>
+            <select id="diaDeProva" [(ngModel)]="examOptions.diaDeProva" class="form-select">
+              <option [ngValue]="'PRIMEIRO'">1º Dia</option>
+              <option [ngValue]="'SEGUNDO'">2º Dia</option>
+            </select>
+          </div>
+        </div>
 
-      <h2 class="text-center">Criar Prova do ENEM</h2>
-      <div class="col-md">
-        <label >
-          Ano:
-          <input class="ms-2" type="number" ngModel="examOptions.ano">
-        </label>
+        <div class="col-md text-center">
+          <div class="form-group">
+            <div class="form-label">
+              <span><strong>ANO</strong></span>
+            </div>
+            <input id="ano" class="form-control" type="number" [(ngModel)]="examOptions.ano">
+          </div>
+        </div>
+
+        <div class="col-md text-center">
+          <div class="form-group">
+            <div class="form-label">
+              <span><strong>COR</strong></span>
+            </div>
+            <select id="corDaProva" [(ngModel)]="examOptions.corDaProva" class="form-select">
+              <option [ngValue]="'AMARELA'">Amarela</option>
+              <option [ngValue]="'AZUL'">Azul</option>
+              <option [ngValue]="'BRANCA'">Branca</option>
+              <option [ngValue]="'ROSA'">Rosa</option>
+            </select>
+          </div>
+        </div>
       </div>
 
-      <div class="col-md">
-        <label>
-          Dia:
-          <select (ngModel)="examOptions.diaDeProva">
-            <option ngValue="DiaDeProva.PRIMEIRO">1º Dia</option>
-            <option ngValue="DiaDeProva.SEGUNDO">2º Dia</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="col-md">
+      <!-- PROVAVELMENTE NAO VAI PRECISAR DESSA PARTE -->
+      <!-- <div class="col-md">
         <label>
           Área de Conhecimento:
           <select (ngModel)="examOptions.areaProva">
@@ -30,8 +58,13 @@
             <option ngValue="AreaProva.LINGUAGENS">Linguagens</option>
           </select>
         </label>
+      </div> -->
+    
+      <div class="text-center">
+        <button class="btn btn-primary" [routerLink]="['/question-view']" routerLinkActive="active">
+          Criar Prova
+        </button>
       </div>
-      <!-- <button (click)="startExam()">Iniciar Prova</button> -->
     </div>
   </div>
-</div>  
+</div>
