@@ -1,0 +1,72 @@
+.custom-card {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #c2c2c3;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.info-box {
+    padding: 20px;
+    background-color: #fbfbfb;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.info-box p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-box {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-top: 15px;
+    margin-bottom: 15px; 
+}
+
+.form-label {
+    background-color: #e9e8e8; /* Cor das caixas DIA, ANO e COR */
+    padding: 8px;
+    border-radius: 4px;
+    display: inline-block;
+    width: 100%;
+    max-width: 150px;
+}
+
+.form-label span {
+    font-weight: bold;
+}
+
+.form-select,
+.form-control {
+    width: 100%;
+    max-width: 150px;
+    display: inline-block;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
