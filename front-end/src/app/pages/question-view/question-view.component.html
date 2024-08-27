@@ -1,1 +1,77 @@
-<p>question-view works!</p>
+<div class="question-container">
+    <h2>Questão {{questions[currentQuestionIndex].number}}</h2>
+    
+    <div *ngIf="questions[currentQuestionIndex].image" class="image-container">
+      <img [src]="questions[currentQuestionIndex].image" alt="Imagem da questão">
+    </div>
+    
+    <p>{{questions[currentQuestionIndex].content}}</p>
+    
+    <div class="options-container">
+      <div class="option">
+        <label class="custom-radio">
+          <input 
+            type="radio" 
+            name="question{{currentQuestionIndex}}" 
+            [value]="questions[currentQuestionIndex].options[0]" 
+            [(ngModel)]="selectedOption">
+          <span class="radio-checkmark">A</span>
+          {{questions[currentQuestionIndex].options[0]}}
+        </label>
+      </div>
+      <div class="option">
+        <label class="custom-radio">
+          <input 
+            type="radio" 
+            name="question{{currentQuestionIndex}}" 
+            [value]="questions[currentQuestionIndex].options[1]" 
+            [(ngModel)]="selectedOption">
+          <span class="radio-checkmark">B</span>
+          {{questions[currentQuestionIndex].options[1]}}
+        </label>
+      </div>
+      <div class="option">
+        <label class="custom-radio">
+          <input 
+            type="radio" 
+            name="question{{currentQuestionIndex}}" 
+            [value]="questions[currentQuestionIndex].options[2]" 
+            [(ngModel)]="selectedOption">
+          <span class="radio-checkmark">C</span>
+          {{questions[currentQuestionIndex].options[2]}}
+        </label>
+      </div>
+      <div class="option">
+        <label class="custom-radio">
+          <input 
+            type="radio" 
+            name="question{{currentQuestionIndex}}" 
+            [value]="questions[currentQuestionIndex].options[3]" 
+            [(ngModel)]="selectedOption">
+          <span class="radio-checkmark">D</span>
+          {{questions[currentQuestionIndex].options[3]}}
+        </label>
+      </div>
+      <div class="option">
+        <label class="custom-radio">
+          <input 
+            type="radio" 
+            name="question{{currentQuestionIndex}}" 
+            [value]="questions[currentQuestionIndex].options[4]" 
+            [(ngModel)]="selectedOption">
+          <span class="radio-checkmark">E</span>
+          {{questions[currentQuestionIndex].options[4]}}
+        </label>
+      </div>
+    </div>
+    
+    <div class="navigation-buttons">
+      <button (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">←</button>
+      <button (click)="nextQuestion()" [disabled]="currentQuestionIndex === questions.length - 1">→</button>
+    </div>
+    
+    <div class="action-buttons">
+      <button (click)="pauseExam()" class="pause-button">Pausar</button>
+      <button (click)="finishExam()" class="finish-button">Finalizar</button>
+    </div>
+  </div>

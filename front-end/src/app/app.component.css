@@ -3,28 +3,43 @@
   padding: 1em;
 }
 
+.container {
+  justify-content: center;
+  width: 100%;
+}
+
 .navbar-brand {
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin: 0 20px;
 }
 
-.navbar-logo {
-  height: 50px; /* Ajuste conforme necessário */
-  transition: transform 0.2s ease; /* Transição suave para o efeito */
+.icon-img {
+  height: 60px;
+  width: auto;
+  transition: transform 0.2s ease;
 }
 
-.navbar-logo:active {
-  transform: scale(1.2); /* Aumenta a logo ao clicar */
+.icon-img:active {
+  transform: scale(1.2);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  margin: 0 10px;
 }
 
 .navbar-nav {
-  justify-content: center;
-  flex-grow: 1;
+  display: flex;
+  align-items: center;
 }
 
 .nav-item {
-  margin-right: 1em;
+  margin: 0 10px;
 }
 
 .nav-link {
@@ -34,14 +49,4 @@
 
 .nav-link:hover {
   text-decoration: underline;
-}
-
-.icon-img {
-  height: 50px;  /* Ajuste conforme necessário */
-  width: auto;   /* Mantém a proporção da imagem */
-  transition: transform 0.2s ease; /* Transição suave para o efeito */
-}
-
-.icon-img:active {
-  transform: scale(1.2); /* Efeito de aumento ao clicar */
 }

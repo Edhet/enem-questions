@@ -1,0 +1,105 @@
+.question-container {
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.options-container {
+  margin-bottom: 20px;
+}
+
+.option {
+  margin-bottom: 10px;
+}
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-radio input[type="radio"] {
+  display: none;
+}
+
+.radio-checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  margin-right: 10px;
+  font-size: 14px;
+  transition: transform 0.5s;
+}
+
+.custom-radio:hover .radio-checkmark {
+  background-color: #bbb;
+  transform: scale(1.1);
+}
+
+.custom-radio input[type="radio"]:checked + .radio-checkmark {
+  background-color: #4CAF50;
+}
+
+.custom-radio input[type="radio"]:disabled + .radio-checkmark {
+  background-color: #ddd;
+}
+
+.navigation-buttons,
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #8c8c8c;
+  color: white;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button[disabled] {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+button:not([disabled]):hover {
+  background-color: #5c5c5c;
+  transform: scale(1.03);
+}

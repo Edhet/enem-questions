@@ -17,7 +17,7 @@
     </div>
     
     <div class="pagination-controls">
-        <button (click)="previousPage()" [disabled]="!showPreviousButton">Anterior</button>
-        <button (click)="nextPage()" [disabled]="!showNextButton">Próximo</button>
+        <button class="previous" (click)="previousPage()" [disabled]="!showPreviousButton">←</button>
+        <button class="next" (click)="nextPage()" [disabled]="!showNextButton">→</button>
     </div>
 </div>

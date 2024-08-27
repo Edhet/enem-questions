@@ -1,72 +1,80 @@
 .historico-header {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #c2c2c3;
-    background-color: #fbfbfb;
-    border-radius: 8px;
-    margin-bottom: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #c2c2c3;
+  background-color: #fbfbfb;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .historico-header h2 {
-    margin-top: 0;
-    color: #333;
+  margin-top: 0;
+  color: #333;
 }
 
 .historico-header p {
-    margin: 10px 0 0;
-    color: rgb(67, 67, 67);
+  margin: 10px 0 0;
+  color: rgb(67, 67, 67);
 }
 
 .historico-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #c2c2c3;
-    background-color: #fbfbfb;
-    border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #c2c2c3;
+  background-color: #fbfbfb;
+  border-radius: 8px;
 }
-  
+
 .prova-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
-  
+
+.prova-item:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.03);
+}
+
 .prova-info p,
 .prova-resultados p {
-    margin: 0;
+  margin: 0;
 }
-  
+
 .pagination-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
-  
+
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    transition: background-color 0.3s;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #8c8c8c;
+  color: white;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 button[disabled] {
-    background-color: #c0c0c0;
-    cursor: not-allowed;
+  background-color: #c0c0c0;
+  cursor: not-allowed;
 }
 
 button:not([disabled]):hover {
-    background-color: #0056b3;
+  background-color: #5c5c5c;
+  transform: scale(1.03);
 }

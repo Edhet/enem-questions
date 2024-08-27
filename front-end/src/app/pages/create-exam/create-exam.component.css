@@ -35,7 +35,7 @@ h2 {
 
 .form-group {
     margin-top: 15px;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
 
 .form-label {
@@ -61,12 +61,15 @@ h2 {
 .btn-primary {
     padding: 10px 20px;
     font-size: 16px;
+    border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    border-color: #007bff;
+    cursor: pointer;
+    background-color: #8c8c8c;
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: #5c5c5c;
+    transform: scale(1.03);
 }
