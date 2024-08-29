@@ -15,53 +15,53 @@ export class HistoryComponent {
   // EXEMPLO COM INFORMAÇÃO DE 7 PROVAS
   provas: Prova[] = [
     {
-      dataRealizacao: new Date(2024, 0, 15), // Janeiro de 2024
+      dataRealizacao: new Date(2024, 7, 28), // Agosto de 2024
       informacoes: { dia: '1º Dia', ano: 2023 },
       cor: 'Amarelo',
-      acertos: 10,
-      erros: 80
+      acertos: 43,
+      erros: 47
     },
     {
-      dataRealizacao: new Date(2024, 1, 22), // Fevereiro de 2024
+      dataRealizacao: new Date(2024, 7, 24),
       informacoes: { dia: '2º Dia', ano: 2022 },
       cor: 'Rosa',
-      acertos: 20,
-      erros: 70
+      acertos: 28,
+      erros: 62
     },
     {
-      dataRealizacao: new Date(2024, 2, 5), // Março de 2024
+      dataRealizacao: new Date(2024, 7, 23),
       informacoes: { dia: '1º Dia', ano: 2023 },
       cor: 'Azul',
       acertos: 30,
       erros: 60
     },
     {
-      dataRealizacao: new Date(2024, 3, 10), // Abril de 2024
+      dataRealizacao: new Date(2024, 7, 22),
       informacoes: { dia: '2º Dia', ano: 2022 },
       cor: 'Branco',
-      acertos: 25,
-      erros: 65
+      acertos: 29,
+      erros: 61
     },
     {
-      dataRealizacao: new Date(2024, 4, 18), // Maio de 2024
+      dataRealizacao: new Date(2024, 7, 21),
       informacoes: { dia: '1º Dia', ano: 2023 },
       cor: 'Amarelo',
       acertos: 15,
       erros: 75
     },
     {
-      dataRealizacao: new Date(2024, 5, 25), // Junho de 2024
+      dataRealizacao: new Date(2024, 7, 20),
       informacoes: { dia: '2º Dia', ano: 2022 },
       cor: 'Rosa',
-      acertos: 40,
-      erros: 50
+      acertos: 33,
+      erros: 57
     },
     {
-      dataRealizacao: new Date(2024, 6, 30), // Julho de 2024
+      dataRealizacao: new Date(2024, 7, 19),
       informacoes: { dia: '1º Dia', ano: 2023 },
       cor: 'Azul',
-      acertos: 35,
-      erros: 55
+      acertos: 39,
+      erros: 51
     }
   ];
 

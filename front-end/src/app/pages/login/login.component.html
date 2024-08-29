@@ -11,7 +11,8 @@
       <input type="password" id="password" name="password" [(ngModel)]="password" required>
     </div>
 
-    <button type="submit">Entrar</button>
+    <!-- REMOVER ROUTERLINK DEPOIS -->
+    <button type="submit" [routerLink]="['/profile']" routerLinkActive="active">Entrar</button>
 
     <p class="signup-prompt">
       Não tem conta? <a routerLink="/register" routerLinkActive="active">Criar conta</a>

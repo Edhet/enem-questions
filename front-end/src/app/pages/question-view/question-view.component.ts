@@ -18,30 +18,33 @@ export class QuestionViewComponent {
   questions = [
     {
       number: 1,
-      content: 'Conteúdo da questão 1',
-      options: ['Opção A', 'Opção B', 'Opção C', 'Opção D', 'Opção E'],
-      image: 'https://s2-techtudo.glbimg.com/JsE244mucjKWLYtNgeiDyfVYlJQ=/0x129:1024x952/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2023/7/i/ME2AxRRoygUyFPCDe0jQ/3.png'
+      content: 'Ao retratar o ambiente de trabalho em um escritório, esse cartum tem por objetivo',
+      options: ['criticar um padrão de vestimenta.', 'destacar a falta de diversidade.', 'indicar um modo de interação.', 'elogiar um modelo de organização.', 'salientar o espírito de cooperação.'],
+      image: 'https://i.pinimg.com/736x/91/cf/86/91cf862dec2b37bd366291f52312b8aa.jpg'
     },
     {
       number: 2,
-      content: 'Conteúdo da questão 2',
-      options: ['Opção A', 'Opção B', 'Opção C', 'Opção D', 'Opção E']
+      content: 'Nesse poema, a expressão “No man is an island” ressalta o(a)',
+      options: ['medo da morte.', 'ideia de conexão.', 'conceito de solidão.', 'risco de devastação.', 'necessidade de empatia.'],
+      image: 'https://i.pinimg.com/736x/83/f9/51/83f951bc3fce0bc911dbd60025808f99.jpg'
     },
     {
       number: 3,
-      content: 'Conteúdo da questão 3',
-      options: ['Opção A', 'Opção B', 'Opção C', 'Opção D', 'Opção E'],
-      image: 'https://dm0fehhuxv6f6.cloudfront.net/wp-content/uploads/2023/04/30035515/bing-panda-600x600.jpg'
+      content: 'Esse cartaz de campanha sugere que',
+      options: ['os lixões precisam de ampliação. ', 'o desperdício degrada o ambiente.', 'os mercados doam alimentos perecíveis.', 'a desnutrição compromete o raciocínio.', 'as residências carecem de refrigeradores.'],
+      image: 'https://i.pinimg.com/736x/b9/35/4e/b9354e8eeeafa35d78a47934a857cbc0.jpg'
     },
     {
       number: 4,
-      content: 'Conteúdo da questão 4',
-      options: ['Opção A', 'Opção B', 'Opção C', 'Opção D', 'Opção E']
+      content: 'Ao retratar a trajetória de refugiados, o poema recorre à imagem de viagem marítima para destacar o(a)',
+      options: ['risco de choques culturais.', 'impacto do ensino de história.', 'importância da luta ambiental.', 'existência de experiências plurais.', 'necessidade de capacitação profissional.'],
+      image: 'https://i.pinimg.com/736x/af/85/86/af8586b6c6837a050f6aebeab56c9b25.jpg'
     },
     {
       number: 5,
-      content: 'Conteúdo da questão 5',
-      options: ['Opção A', 'Opção B', 'Opção C', 'Opção D', 'Opção E']
+      content: 'Nesse poema de Tato Laviera, o eu lírico destaca uma',
+      options: ['convergência linguístico-cultural.', 'característica histórico-cultural.', 'tendência estilístico-literária.', 'discriminação cultural.', 'censura musical.'],
+      image: 'https://i.pinimg.com/736x/76/ec/06/76ec06182202956138fe868a9f7ddb32.jpg'
     }
   ];
 
